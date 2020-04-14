@@ -1,0 +1,12 @@
+os: linux
+language: node_js
+node_js:
+  - 10.x
+  - 12.x
+branches:
+  only:
+    - master
+    - dev
+script:
+  - npm install
+  - cd frontend && npm install && npm run build
