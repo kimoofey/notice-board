@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cd frontend && npm install && npm run build",
-    "heroku-postbuild": "node backend/bin/www"
+    "start": "node backend/bin/www",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
