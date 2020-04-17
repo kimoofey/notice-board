@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "set NODE_ENV=development&& node backend/bin/www",
-    "build": "NODE_ENV=production&& node backend/bin/www",
+    "start": "node backend/bin/www",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "dependencies": {

@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var app = process.env.NODE_ENV === 'development' ? require('../../dev') : require('../../app');
+var app = process.env.NODE_ENV === 'production' ? require('../../app') : require('../../dev');
 var debug = require('debug')('backend:server');
 var http = require('http');
 
@@ -11,7 +11,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort('3001');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 /**
