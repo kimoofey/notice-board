@@ -1,4 +1,5 @@
 # README
+[![Build Status](https://travis-ci.com/kimoofey/notice-board.svg?branch=dev)](https://travis-ci.com/kimoofey/notice-board)
 
 Project for "Security of Internet applications" in Peter the Great St.Petersburg Polytechnic University
 
