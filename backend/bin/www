@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var app = require('../../dev');
+var app = process.env.NODE_ENV === 'development' ? require('../../dev') : require('../../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
 
