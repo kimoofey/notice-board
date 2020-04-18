@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
 import logo from './logo.svg'
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
-    state = {users: []};
+
+    constructor(props) {
+        super(props);
+        this.state = {users: []};
+        const {REACT_APP_ROCKET_URL} = process.env;
+        this.baseUrl = `${REACT_APP_ROCKET_URL}/users`;
+        console.log(process.env);
+    }
 
     componentDidMount() {
-        fetch('/users')
-            .then(res => res.json())
-            .then(users => this.setState({users}));
+        axios.get('/users')
+            .then(response => this.setState({users: response.data}))
+            .catch(error => console.log('error:', error));
     }
 
     render() {
