@@ -8,21 +8,18 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {users: []};
-        const {REACT_APP_ROCKET_URL} = process.env;
-        this.baseUrl = `${REACT_APP_ROCKET_URL}/users`;
-        console.log(process.env);
     }
 
-    componentDidMount() {
+    handleStartButton = () => {
         axios.get('/users')
             .then(response => this.setState({users: response.data}))
             .catch(error => console.log('error:', error));
-    }
+    };
 
     render() {
         return (
             <div className="App">
-                <MainPage/>
+                <MainPage handleStartButton={this.handleStartButton}/>
                 <h1>Users</h1>
                 {this.state.users.map(user =>
                     <div key={user.id}>{user.username}</div>

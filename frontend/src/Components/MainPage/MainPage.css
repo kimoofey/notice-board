@@ -1,3 +1,15 @@
-.categories {
-    height: 500px;
+.home-container {
+    height: 80vh;
+}
+
+.social-icon {
+    margin: 10px 0;
+}
+
+.title-icon {
+    margin: 20px;
+}
+
+.categories-card {
+
 }
