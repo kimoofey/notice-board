@@ -9,12 +9,6 @@ var usersRouter = require('./backend/routes/users');
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'backend/build')));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'backend/build', 'index.html'));
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'backend/views'));
 app.set('view engine', 'pug');
