@@ -10,17 +10,17 @@ import {
 
 const items = [
     {
-        src: 'https://via.placeholder.com/350?text=Carousel',
+        src: 'https://via.placeholder.com/350?text=Carousel1',
         altText: 'Slide 1',
         caption: 'Slide 1'
     },
     {
-        src: 'https://via.placeholder.com/350?text=Carousel',
+        src: 'https://via.placeholder.com/350?text=Carousel2',
         altText: 'Slide 2',
         caption: 'Slide 2'
     },
     {
-        src: 'https://via.placeholder.com/350?text=Carousel',
+        src: 'https://via.placeholder.com/350?text=Carousel3',
         altText: 'Slide 3',
         caption: 'Slide 3'
     }

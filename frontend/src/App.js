@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
-import MainPage from "./Components/MainPage/MainPage";
+import MainPage from "./components/MainPage/MainPage";
 
 class App extends Component {
 

@@ -8,34 +8,37 @@ import {
     Card,
     CardImg,
     CardBody,
-    CardTitle
+    CardTitle,
+    Spinner
 } from "reactstrap";
-import {faFacebookSquare, faInstagramSquare, faTwitterSquare} from "@fortawesome/free-brands-svg-icons";
+import {faFacebook, faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {faUserShield, faHeadset, faLemon} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './MainPage.css'
 import CustomCarousel from "../Carousel/Carousel";
+import {fetchCategories} from "../../actions/CategoriesActions";
+import {connect} from "react-redux";
 
-export default class MainPage extends Component {
-    constructor(props) {
-        super(props);
+class MainPage extends Component {
+    componentDidMount() {
+        this.props.fetchCategories();
     }
 
     render() {
         return (
             <section>
-                <Container>
-                    <Col md="6" className="">MOTO</Col>
+                <Container className="title" fluid>
+                    <Col md="6" className=""><h2>Люди – людям</h2></Col>
                     <Row className="home-container">
                         <Col md="1" className="d-flex align-items-center justify-content-center flex-column">
-                            <FontAwesomeIcon size="lg" className="social-icon" icon={faFacebookSquare}/>
-                            <FontAwesomeIcon size="lg" className="social-icon" icon={faTwitterSquare}/>
-                            <FontAwesomeIcon size="lg" className="social-icon" icon={faInstagramSquare}/>
+                            <FontAwesomeIcon size="lg" className="social-icon" icon={faFacebook}/>
+                            <FontAwesomeIcon size="lg" className="social-icon" icon={faTwitter}/>
+                            <FontAwesomeIcon size="lg" className="social-icon" icon={faInstagram}/>
                         </Col>
                         <Col md="5" className="d-flex align-items-center justify-content-center flex-column">
                             <div className="">
                                 <h1>Notice Board</h1>
-                                <Button onClick={this.props.handleStartButton} color="danger">Start now</Button>
+                                <Button onClick={this.props.handleStartButton} id="home-button">Start now</Button>
                             </div>
                             <div>
                                 <FontAwesomeIcon size="lg" className="title-icon" icon={faUserShield}/>
@@ -48,13 +51,13 @@ export default class MainPage extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <Container>
+                <Container className="about" fluid>
                     <h2>About Us</h2>
-                    <Row className="home-container">
-                        <Col md="6" className="d-flex align-items-center justify-content-center">
+                    <Row className="home-container d-flex align-items-center justify-content-center">
+                        <Col md="5">
                             <img src="https://via.placeholder.com/350?text=Pretty-image" alt=""/>
                         </Col>
-                        <Col md="6" className="d-flex align-items-center">
+                        <Col md="5">
                             <div className="text-justify">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla maximus faucibus orci,
                                     quis tristique mi ullamcorper a. Curabitur risus odio, varius non ante at, aliquam
@@ -66,50 +69,44 @@ export default class MainPage extends Component {
                                     mollis libero vel, sodales sapien. Quisque sem turpis, imperdiet nec facilisis sit
                                     amet,
                                     sollicitudin sed lacus.</p>
-                                <Button color="danger">Learn More</Button>
+                                <Button id="more-button">Learn More</Button>
                             </div>
                         </Col>
                     </Row>
                 </Container>
-                <Container>
+                <Container className="options" fluid>
                     <h2>Categories</h2>
-                    <Row className="home-container">
-                        <Col md="4">
-                            <Card className="categories-card border-0">
-                                <CardImg top width="100%" src="https://via.placeholder.com/250?text=Pretty-image"
-                                         alt="Card image cap"/>
-                                <CardBody>
-                                    <CardTitle>Card title</CardTitle>
-                                    <Button>Search</Button>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                        <Col md="4">
-                            <Card className="categories-card border-0">
-                                <CardImg top width="100%" src="https://via.placeholder.com/250?text=Pretty-image"
-                                         alt="Card image cap"/>
-                                <CardBody>
-                                    <CardTitle>Card title</CardTitle>
-                                    <Button>Search</Button>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                        <Col md="4">
-                            <Card className="categories-card border-0">
-                                <CardImg top width="100%" src="https://via.placeholder.com/250?text=Pretty-image"
-                                         alt="Card image cap"/>
-                                <CardBody>
-                                    <CardTitle>Card title</CardTitle>
-                                    <Button>Search</Button>
-                                </CardBody>
-                            </Card>
-                        </Col>
+                    <Row className="home-container d-flex align-items-center justify-content-center">
+                        {!this.props.categories.isLoading ? this.props.categories.categories.map((item) => (
+                            <Col md="3" key={item.id}>
+                                <Card className="categories-card border-0">
+                                    <CardImg top width="100%" src={item.img} alt="Card image cap"/>
+                                    <CardBody>
+                                        <CardTitle>{item.title}</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        )) : <Spinner id="spinner" type="grow"/>
+                        }
                     </Row>
                 </Container>
             </section>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    categories: state.Categories
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchCategories: () => dispatch(fetchCategories())
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainPage);
 
 MainPage.propTypes = {
     handleStartButton: PropTypes.func.isRequired
