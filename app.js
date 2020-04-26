@@ -6,14 +6,17 @@ var logger = require('morgan');
 
 var indexRouter = require('./backend/routes');
 var usersRouter = require('./backend/routes/users');
+var categoriesRouter = require('./backend/routes/categories');
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'backend/build')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'backend/build')));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'backend/build', 'index.html'));
-});
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'backend/build', 'index.html'));
+    });
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'backend/views'));
@@ -27,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'backend/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -34,7 +38,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
