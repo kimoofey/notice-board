@@ -17,7 +17,7 @@ Before start you need to have **[Git](https://git-scm.com/)**, **[Node JS](https
 
 1. Clone repository using Git.
 2. Install project's dependencies by running `npm install` from **both** root and frontend folders.
-3. Run `npm start` from root folder. It will run Express on 3001 port.
+3. Run `npm run start:dev` from root folder. It will run Express on 3001 port via nodemon. To restart it just save changes and nodemon will automatically restarting the server.
 4. Run `npm start` from frontend folder. It will run application on 3000 port.
 
 ### Deployment
