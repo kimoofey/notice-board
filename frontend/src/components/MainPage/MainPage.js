@@ -1,23 +1,14 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
-import {
-    Button,
-    Container,
-    Row,
-    Col,
-    Card,
-    CardImg,
-    CardBody,
-    CardTitle,
-    Spinner
-} from "reactstrap";
+import {Button, Card, CardBody, CardImg, CardTitle, Col, Container, Row, Spinner} from "reactstrap";
 import {faFacebook, faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
-import {faUserShield, faHeadset, faLemon} from "@fortawesome/free-solid-svg-icons";
+import {faHeadset, faLemon, faUserShield} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './MainPage.css'
 import CustomCarousel from "../Carousel/Carousel";
 import {fetchCategories} from "../../actions/CategoriesActions";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 class MainPage extends Component {
     componentDidMount() {
@@ -39,6 +30,8 @@ class MainPage extends Component {
                             <div className="">
                                 <h1>Notice Board</h1>
                                 <Button onClick={this.props.handleStartButton} id="home-button">Start now</Button>
+                                <Link to="/login"><Button onClick={this.props.handleStartButton}
+                                                          id="home-button">Login</Button></Link>
                             </div>
                             <div>
                                 <FontAwesomeIcon size="lg" className="title-icon" icon={faUserShield}/>
