@@ -31,7 +31,7 @@ class MainPage extends Component {
                                 <h1>Notice Board</h1>
                                 <Button onClick={this.props.handleStartButton} id="home-button">Start now</Button>
                                 <Link to="/login"><Button onClick={this.props.handleStartButton}
-                                                          id="home-button">Login</Button></Link>
+                                                          color="danger">Login</Button></Link>
                             </div>
                             <div>
                                 <FontAwesomeIcon size="lg" className="title-icon" icon={faUserShield}/>
