@@ -9,7 +9,11 @@ In project we use technologies:
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 * [Bootstrap](https://getbootstrap.com/)
+* [Formik](https://jaredpalmer.com/formik)
 * [Express](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [Nodemailer](https://nodemailer.com/)
 
 ### Installation
 

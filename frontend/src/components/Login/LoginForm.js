@@ -1,12 +1,14 @@
 import React from 'react';
 import {Formik} from 'formik';
+import {API_URL} from "../../config";
 import {Alert, Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const SignupForm = () => {
     return (
         <Formik
-            initialValues={{firstName: '', lastName: '', email: ''}}
+            initialValues={{firstName: 'andrey', lastName: 'test', email: 'test@email.com', password: 'aaaaaaaaa'}}
             validationSchema={Yup.object({
                 firstName: Yup.string()
                     .max(15, 'Must be 15 characters or less')
@@ -23,10 +25,27 @@ const SignupForm = () => {
                     .required('Required'),
             })}
             onSubmit={(values, {setSubmitting}) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
+                // this.setState({sendingEmail: true});
+                console.log(values);
+                // Super interesting to me that you can mess with the upper and lower case
+                // of the headers on the fetch call and the world does not explode.
+                axios.post(`${API_URL}/email`, {
+                    email: values.email
+                })
+                // .then(res => res.json())
+                    .then(data => {
+                        console.log(data.data);
+                        // Everything has come back successfully, time to update the state to
+                        // reenable the button and stop the <Spinner>. Also, show a toast with a
+                        // message from the server to give the user feedback and reset the form
+                        // so the user can start over if she chooses.
+                        // this.setState({sendingEmail: false});
+                        // notify.show(data.data.msg);
+                        alert(data.data.msg);
+                    })
+                    .catch(err => console.log(err));
+                // alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
             }}
         >
             {formik => (

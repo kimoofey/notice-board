@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from 'prop-types';
 import {Button, Card, CardBody, CardImg, CardTitle, Col, Container, Row, Spinner} from "reactstrap";
 import {faFacebook, faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {faHeadset, faLemon, faUserShield} from "@fortawesome/free-solid-svg-icons";
@@ -29,9 +28,8 @@ class MainPage extends Component {
                         <Col md="5" className="d-flex align-items-center justify-content-center flex-column">
                             <div className="">
                                 <h1>Notice Board</h1>
-                                <Button onClick={this.props.handleStartButton} id="home-button">Start now</Button>
-                                <Link to="/login"><Button onClick={this.props.handleStartButton}
-                                                          color="danger">Login</Button></Link>
+                                <Button id="home-button">Start now</Button>
+                                <Link to="/login"><Button color="danger">Login</Button></Link>
                             </div>
                             <div>
                                 <FontAwesomeIcon size="lg" className="title-icon" icon={faUserShield}/>
@@ -102,5 +100,5 @@ export default connect(
 )(MainPage);
 
 MainPage.propTypes = {
-    handleStartButton: PropTypes.func.isRequired
+    // handleStartButton: PropTypes.func.isRequired
 };
