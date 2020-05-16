@@ -1,0 +1,12 @@
+.container-fluid {
+    background-color: #16161a;
+    height: 100vh;
+}
+
+label {
+    color: #fffffe;
+}
+
+.home-link {
+    margin: auto 0;
+}

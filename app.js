@@ -3,14 +3,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const passport = require('passport');
 const indexRouter = require('./backend/routes');
-const usersRouter = require('./backend/routes/users');
 const categoriesRouter = require('./backend/routes/categories');
+const users = require('./backend/routes/api/users');
 
 const app = express();
-
-// TODO connect database
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'backend/build')));
@@ -29,10 +27,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'backend/public')));
+app.use(passport.initialize());
+require('./backend/config/passport')(passport);
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/categories', categoriesRouter);
+app.use('/api/users', users);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
