@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-// The credentials for the email account you want to send mail from gmail TODO need to change email provider
+// The credentials for the email account you want to send mail from mailtrap
 const credentials = {
     host: "smtp.mailtrap.io",
     port: 2525,
@@ -18,7 +18,8 @@ module.exports = async (to, content) => {
     //from and to
     const contacts = {
         from: 'support@webnoticeboard.com',
-        to: 'to@email.com'
+        to: 'user@email.com',
+        subject: 'Confirm email address for Web Notice Board'
     };
 
     // Combining the content and contacts into a single object that can

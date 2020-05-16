@@ -1,4 +1,4 @@
-import {FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_FAILURE, FETCH_CATEGORIES_SUCCESS} from "../constants/ActionTypes"
+import {FETCH_CATEGORIES_FAILURE, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_SUCCESS} from "../constants/ActionTypes"
 
 const initialState = {
     isLoading: true,
@@ -7,7 +7,7 @@ const initialState = {
     categories: []
 };
 
-export default function Categories(state = initialState, action) {
+export default function CategoriesReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_CATEGORIES_REQUEST:
             return {

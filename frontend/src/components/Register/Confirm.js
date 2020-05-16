@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {notify} from 'react-notify-toast';
-import {API_URL} from "../../config";
 import Spinner from '../Spinner/Spinner';
 
 export default class Confirm extends Component {
@@ -10,18 +9,9 @@ export default class Confirm extends Component {
         confirming: true
     };
 
-    // When the component mounts the mongo id for the user is pulled  from the
-    // params in React Router. This id is then sent to the server to confirm that
-    // the user has clicked on the link in the email. The link in the email will
-    // look something like this:
-    //
-    // http://localhost:3000/confirm/5c40d7607d259400989a9d42
-    //
-    // where 5c40d...a9d42 is the unique id created by Mongo
     componentDidMount() {
         const {id} = this.props.match.params;
-        axios.get(`${API_URL}/email/confirm/${id}`)
-        // .then(res => res.json)
+        axios.get(`/api/users/confirm/${id}`)
             .then(data => {
                 console.log(data);
                 this.setState({confirming: false});
