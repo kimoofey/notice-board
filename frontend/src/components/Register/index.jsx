@@ -50,7 +50,7 @@ class Register extends Component {
                                 password: Yup.string()
                                     .min(
                                         8,
-                                        'Password is too short - should be 8 chars minimum',
+                                        'Password is too short - should be 8 chars minimum'
                                     )
                                     .required('Required'),
                             })}
@@ -64,7 +64,7 @@ class Register extends Component {
 
                                 this.props.registerUser(
                                     newUser,
-                                    this.props.history,
+                                    this.props.history
                                 );
                                 setSubmitting(false);
                             }}
@@ -97,7 +97,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="firstName"
                                                 {...formik.getFieldProps(
-                                                    'firstName',
+                                                    'firstName'
                                                 )}
                                             />
                                             {formik.touched.firstName &&
@@ -115,7 +115,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="lastName"
                                                 {...formik.getFieldProps(
-                                                    'lastName',
+                                                    'lastName'
                                                 )}
                                             />
                                             {formik.touched.lastName &&
@@ -131,7 +131,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="email"
                                                 {...formik.getFieldProps(
-                                                    'email',
+                                                    'email'
                                                 )}
                                             />
                                             {formik.touched.email &&
@@ -150,7 +150,7 @@ class Register extends Component {
                                                 name="password"
                                                 type="password"
                                                 {...formik.getFieldProps(
-                                                    'password',
+                                                    'password'
                                                 )}
                                             />
                                             {formik.touched.password &&

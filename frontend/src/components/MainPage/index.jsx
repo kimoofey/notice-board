@@ -93,7 +93,7 @@ class MainPage extends Component {
                             md="6"
                             className="d-flex align-items-center justify-content-center"
                         >
-                            <CustomCarousel/>
+                            <CustomCarousel />
                         </Col>
                     </Row>
                 </Container>
@@ -150,7 +150,7 @@ class MainPage extends Component {
                                 </Col>
                             ))
                         ) : (
-                            <Spinner id="spinner" type="grow"/>
+                            <Spinner id="spinner" type="grow" />
                         )}
                     </Row>
                 </Container>

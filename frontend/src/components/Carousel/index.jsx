@@ -74,7 +74,7 @@ class CustomCarousel extends Component {
                             onExited={() => this.setState({ animating: false })}
                             key={item.src}
                         >
-                            <img src={item.src} alt={item.altText}/>
+                            <img src={item.src} alt={item.altText} />
                             <CarouselCaption
                                 captionText={item.caption}
                                 captionHeader={item.caption}

@@ -6,7 +6,7 @@ const Spinner = (props) => {
     const { size, spinning } = props;
     return (
         <div className={`fadeIn ${spinning}`}>
-            <FontAwesomeIcon icon={faCheck} size={size} color="green"/>
+            <FontAwesomeIcon icon={faCheck} size={size} color="green" />
         </div>
     );
 };

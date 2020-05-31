@@ -51,7 +51,7 @@ class Login extends Component {
                                 password: Yup.string()
                                     .min(
                                         8,
-                                        'Password is too short - should be 8 chars minimum',
+                                        'Password is too short - should be 8 chars minimum'
                                     )
                                     .required('Required'),
                             })}
@@ -87,7 +87,7 @@ class Login extends Component {
                                                 className="form-control"
                                                 name="email"
                                                 {...formik.getFieldProps(
-                                                    'email',
+                                                    'email'
                                                 )}
                                             />
                                             {formik.touched.email &&
@@ -106,7 +106,7 @@ class Login extends Component {
                                                 name="password"
                                                 type="password"
                                                 {...formik.getFieldProps(
-                                                    'password',
+                                                    'password'
                                                 )}
                                             />
                                             {formik.touched.password &&

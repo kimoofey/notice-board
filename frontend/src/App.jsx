@@ -32,10 +32,10 @@ const App = () => {
             <BrowserRouter>
                 <div className="App">
                     <Switch>
-                        <Route exact path="/" component={MainPage}/>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/register" component={Register}/>
-                        <Route exact path="/confirm/:id" component={Confirm}/>
+                        <Route exact path="/" component={MainPage} />
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/confirm/:id" component={Confirm} />
                         <PrivateRoute
                             exact
                             path="/account"

@@ -28,10 +28,10 @@ export default class Confirm extends Component {
     render = () => (
         <div className="confirm">
             {this.state.confirming ? (
-                <Spinner size="8x" spinning={'spinning'}/>
+                <Spinner size="8x" spinning={'spinning'} />
             ) : (
                 <Link to="/">
-                    <Spinner size="8x" spinning={''}/>
+                    <Spinner size="8x" spinning={''} />
                 </Link>
             )}
         </div>
