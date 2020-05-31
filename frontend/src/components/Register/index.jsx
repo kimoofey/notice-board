@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import * as Yup from "yup"
+import React, { Component } from 'react';
+import * as Yup from 'yup';
 import {
     Alert,
     Button,
@@ -8,14 +8,14 @@ import {
     FormGroup,
     Input,
     Label,
-} from "reactstrap"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons"
-import { Link, withRouter } from "react-router-dom"
-import { Formik } from "formik"
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link, withRouter } from 'react-router-dom';
+import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-import { connect } from "react-redux"
-import { registerUser } from "../../actions/authActions"
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 import './RegisterForm.css';
 
 class Register extends Component {
@@ -32,10 +32,10 @@ class Register extends Component {
                     <div className="col-md-6">
                         <Formik
                             initialValues={{
-                                firstName: "",
-                                lastName: "",
-                                email: "",
-                                password: "",
+                                firstName: '',
+                                lastName: '',
+                                email: '',
+                                password: '',
                             }}
                             validationSchema={Yup.object({
                                 firstName: Yup.string()
@@ -50,7 +50,7 @@ class Register extends Component {
                                 password: Yup.string()
                                     .min(
                                         8,
-                                        "Password is too short - should be 8 chars minimum",
+                                        'Password is too short - should be 8 chars minimum',
                                     )
                                     .required('Required'),
                             })}
@@ -65,7 +65,7 @@ class Register extends Component {
                                 this.props.registerUser(
                                     newUser,
                                     this.props.history,
-                                )
+                                );
                                 setSubmitting(false);
                             }}
                         >
@@ -86,7 +86,7 @@ class Register extends Component {
                                         </Link>
                                         <h3>Register</h3>
                                         <p>
-                                            Already have an account?{" "}
+                                            Already have an account?{' '}
                                             <Link to="/login">Login</Link>
                                         </p>
                                         <FormGroup className="">
@@ -97,7 +97,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="firstName"
                                                 {...formik.getFieldProps(
-                                                    "firstName",
+                                                    'firstName',
                                                 )}
                                             />
                                             {formik.touched.firstName &&
@@ -115,7 +115,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="lastName"
                                                 {...formik.getFieldProps(
-                                                    "lastName",
+                                                    'lastName',
                                                 )}
                                             />
                                             {formik.touched.lastName &&
@@ -131,7 +131,7 @@ class Register extends Component {
                                                 className="form-control"
                                                 name="email"
                                                 {...formik.getFieldProps(
-                                                    "email",
+                                                    'email',
                                                 )}
                                             />
                                             {formik.touched.email &&
@@ -150,7 +150,7 @@ class Register extends Component {
                                                 name="password"
                                                 type="password"
                                                 {...formik.getFieldProps(
-                                                    "password",
+                                                    'password',
                                                 )}
                                             />
                                             {formik.touched.password &&
@@ -187,4 +187,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors,
 });
-export default connect(mapStateToProps, { registerUser })(withRouter(Register))
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

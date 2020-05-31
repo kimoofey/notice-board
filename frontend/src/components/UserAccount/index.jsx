@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import { Button } from "reactstrap"
-import { logoutUser } from "../../actions/authActions"
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import { logoutUser } from '../../actions/authActions';
 import './UserAccount.css';
 
 class UserAccount extends Component {
@@ -12,7 +12,7 @@ class UserAccount extends Component {
     }
 
     render() {
-        const { user } = this.props.auth
+        const { user } = this.props.auth;
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -37,5 +37,5 @@ UserAccount.propTypes = {
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
-})
-export default connect(mapStateToProps, { logoutUser })(UserAccount)
+});
+export default connect(mapStateToProps, { logoutUser })(UserAccount);

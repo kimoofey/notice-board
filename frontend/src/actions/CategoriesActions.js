@@ -3,7 +3,7 @@ import {
     FETCH_CATEGORIES_REQUEST,
     FETCH_CATEGORIES_FAILURE,
     FETCH_CATEGORIES_SUCCESS,
-} from "../constants/ActionTypes"
+} from '../constants/ActionTypes';
 
 export const fetchCategoriesRequest = () => ({
     type: FETCH_CATEGORIES_REQUEST,
@@ -34,7 +34,7 @@ export const fetchCategoriesFailure = (error) => ({
 export const fetchCategories = () => (dispatch) => {
     dispatch(fetchCategoriesRequest());
     axios
-        .get("/categories")
+        .get('/categories')
         .then((categories) => {
             dispatch(fetchCategoriesSuccess(categories.data));
         })

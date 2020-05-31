@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
-import * as Yup from "yup"
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as Yup from 'yup';
 import {
     Alert,
     Button,
@@ -10,24 +10,24 @@ import {
     FormGroup,
     Input,
     Label,
-} from "reactstrap"
-import { Link } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons"
-import { Formik } from "formik"
-import { loginUser } from "../../actions/authActions"
-import "./Login.css"
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
+import { Formik } from 'formik';
+import { loginUser } from '../../actions/authActions';
+import './Login.css';
 
 class Login extends Component {
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/account")
+            this.props.history.push('/account');
         }
     }
 
     componentDidUpdate() {
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/account")
+            this.props.history.push('/account');
         }
         if (this.props.errors) {
             // catch errors
@@ -43,26 +43,26 @@ class Login extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col-md-6">
                         <Formik
-                            initialValues={{ email: "", password: "" }}
+                            initialValues={{ email: '', password: '' }}
                             validationSchema={Yup.object({
                                 email: Yup.string()
-                                    .email("Invalid email address")
-                                    .required("Required"),
+                                    .email('Invalid email address')
+                                    .required('Required'),
                                 password: Yup.string()
                                     .min(
                                         8,
-                                        "Password is too short - should be 8 chars minimum",
+                                        'Password is too short - should be 8 chars minimum',
                                     )
-                                    .required("Required"),
+                                    .required('Required'),
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 const userData = {
                                     email: values.email,
                                     password: values.password,
-                                }
+                                };
 
-                                this.props.loginUser(userData)
-                                setSubmitting(false)
+                                this.props.loginUser(userData);
+                                setSubmitting(false);
                             }}
                         >
                             {(formik) => (
@@ -87,7 +87,7 @@ class Login extends Component {
                                                 className="form-control"
                                                 name="email"
                                                 {...formik.getFieldProps(
-                                                    "email",
+                                                    'email',
                                                 )}
                                             />
                                             {formik.touched.email &&
@@ -106,7 +106,7 @@ class Login extends Component {
                                                 name="password"
                                                 type="password"
                                                 {...formik.getFieldProps(
-                                                    "password",
+                                                    'password',
                                                 )}
                                             />
                                             {formik.touched.password &&
@@ -131,7 +131,7 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
@@ -139,9 +139,9 @@ Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.objectOf(PropTypes.object).isRequired,
     errors: PropTypes.objectOf(PropTypes.object).isRequired,
-}
+};
 const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors,
-})
-export default connect(mapStateToProps, { loginUser })(Login)
+});
+export default connect(mapStateToProps, { loginUser })(Login);

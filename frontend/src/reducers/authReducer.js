@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, USER_LOADING } from "../constants/AuthTypes"
+import { SET_CURRENT_USER, USER_LOADING } from '../constants/AuthTypes';
 
 const initialState = {
     isAuthenticated: false,

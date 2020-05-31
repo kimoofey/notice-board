@@ -2,7 +2,7 @@ import {
     FETCH_CATEGORIES_FAILURE,
     FETCH_CATEGORIES_REQUEST,
     FETCH_CATEGORIES_SUCCESS,
-} from "../constants/ActionTypes"
+} from '../constants/ActionTypes';
 
 const initialState = {
     isLoading: true,

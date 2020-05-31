@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react';
 import {
     Button,
     Card,
@@ -9,27 +9,27 @@ import {
     Container,
     Row,
     Spinner,
-} from "reactstrap"
+} from 'reactstrap';
 import {
     faFacebook,
     faInstagram,
     faTwitter,
-} from "@fortawesome/free-brands-svg-icons"
+} from '@fortawesome/free-brands-svg-icons';
 import {
     faHeadset,
     faLemon,
     faUserShield,
-} from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import "./MainPage.css"
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import CustomCarousel from "../Carousel"
-import { fetchCategories } from "../../actions/CategoriesActions"
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './MainPage.css';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CustomCarousel from '../Carousel';
+import { fetchCategories } from '../../actions/CategoriesActions';
 
 class MainPage extends Component {
     componentDidMount() {
-        this.props.fetchCategories()
+        this.props.fetchCategories();
     }
 
     render() {
@@ -155,20 +155,20 @@ class MainPage extends Component {
                     </Row>
                 </Container>
             </section>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => ({
     categories: state.Categories,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
     fetchCategories: () => dispatch(fetchCategories()),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage)
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
 
 MainPage.propTypes = {
     // handleStartButton: PropTypes.func.isRequired
-}
+};
