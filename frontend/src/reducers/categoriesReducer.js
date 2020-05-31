@@ -1,10 +1,14 @@
-import {FETCH_CATEGORIES_FAILURE, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_SUCCESS} from "../constants/ActionTypes"
+import {
+    FETCH_CATEGORIES_FAILURE,
+    FETCH_CATEGORIES_REQUEST,
+    FETCH_CATEGORIES_SUCCESS,
+} from "../constants/ActionTypes"
 
 const initialState = {
     isLoading: true,
     isError: true,
     error: null,
-    categories: []
+    categories: [],
 };
 
 export default function CategoriesReducer(state = initialState, action) {
@@ -21,7 +25,7 @@ export default function CategoriesReducer(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 isError: true,
-                error: action.payload.error
+                error: action.payload.error,
             };
 
         case FETCH_CATEGORIES_SUCCESS:
@@ -29,7 +33,7 @@ export default function CategoriesReducer(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 isError: false,
-                categories: action.payload.categories
+                categories: action.payload.categories,
             };
 
         default:
