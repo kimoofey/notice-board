@@ -19,7 +19,7 @@ module.exports = async (to, content) => {
     const contacts = {
         from: 'support@webnoticeboard.com',
         to: 'user@email.com',
-        subject: 'Confirm email address for Web Notice Board'
+        subject: "Index email address for Web Notice Board",
     };
 
     // Combining the content and contacts into a single object that can
