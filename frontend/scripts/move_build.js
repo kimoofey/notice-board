@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 function rmdir(d) {
     var self = arguments.callee;
@@ -7,18 +7,18 @@ function rmdir(d) {
         fs.readdirSync(d).forEach(function (file) {
             var C = d + '/' + file;
             if (fs.statSync(C).isDirectory()) self(C);
-            else fs.unlinkSync(C)
+            else fs.unlinkSync(C);
         });
-        fs.rmdirSync(d)
+        fs.rmdirSync(d);
     }
 }
 
 try {
-    if (fs.existsSync(path.join(__dirname, "../../backend/build"))) {
-        rmdir(path.join(__dirname, "../../backend/build"));
+    if (fs.existsSync(path.join(__dirname, '../../backend/build'))) {
+        rmdir(path.join(__dirname, '../../backend/build'));
     }
-    const oldBuildDir = path.join(__dirname + "/../build");
-    const newBuildDir = path.join(__dirname, "../../backend/build");
+    const oldBuildDir = path.join(__dirname + '/../build');
+    const newBuildDir = path.join(__dirname, '../../backend/build');
     fs.renameSync(oldBuildDir, newBuildDir);
 } catch (e) {
     console.error(e);

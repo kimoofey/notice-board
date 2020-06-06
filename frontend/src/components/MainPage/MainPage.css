@@ -1,4 +1,5 @@
-p, .card-title {
+p,
+.card-title {
     color: #94a1b2;
 }
 
@@ -6,7 +7,8 @@ p, .card-title {
     padding-top: 50px;
 }
 
-.title, .options {
+.title,
+.options {
     background-color: #16161a;
 }
 
@@ -22,7 +24,8 @@ p, .card-title {
     margin: 20px;
 }
 
-.social-icon, .title-icon {
+.social-icon,
+.title-icon {
     color: #fffffe;
 }
 
@@ -34,7 +37,8 @@ p, .card-title {
     background-color: #16161a;
 }
 
-#home-button, #more-button {
+#home-button,
+#more-button {
     background-color: #7f5af0;
 }
 
