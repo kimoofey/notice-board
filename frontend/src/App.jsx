@@ -12,6 +12,7 @@ import { logoutUser, setCurrentUser } from './actions/authActions';
 import PrivateRoute from './components/PrivateRoute';
 import UserAccount from './components/UserAccount';
 import store from './reducers';
+import Header from './components/Header';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -31,6 +32,7 @@ const App = () => {
         <Provider store={store}>
             <BrowserRouter>
                 <div className="App">
+                    <Header />
                     <Switch>
                         <Route exact path="/" component={MainPage} />
                         <Route exact path="/login" component={Login} />
