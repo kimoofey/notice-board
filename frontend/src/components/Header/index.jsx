@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import './Header.css';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { logoutUser } from '../../actions/authActions';
+import './Header.css';
 
 class Header extends Component {
     onLogoutClick(e) {
         e.preventDefault();
-        logoutUser();
+        this.props.logoutUser();
     }
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
+            <nav className="navbar navbar-expand fixed-top navigation">
+                <Link className="navbar-brand" to="/">
                     Notice Board
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -24,24 +26,14 @@ class Header extends Component {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon" />
                 </button>
 
                 <div
                     className="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">
-                                Home <span className="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Link
-                            </a>
-                        </li>
+                    <ul className="navbar-nav">
                         <li className="nav-item dropdown">
                             <a
                                 className="nav-link dropdown-toggle"
@@ -58,37 +50,27 @@ class Header extends Component {
                                 className="dropdown-menu"
                                 aria-labelledby="navbarDropdown"
                             >
-                                <a className="dropdown-item" href="#">
+                                <Link className="dropdown-item" to="/">
                                     Daily Deals
-                                </a>
-                                <a className="dropdown-item" href="#">
+                                </Link>
+                                <Link className="dropdown-item" to="/">
                                     Create Application
-                                </a>
+                                </Link>
                             </div>
                         </li>
-                        <li className="nav-item">
-                            <a
-                                className="nav-link disabled"
-                                href="#"
-                                tabIndex="-1"
-                                aria-disabled="true"
-                            >
-                                Disabled
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/account/">
+                        <li className="nav-item navigation--profile-link">
+                            <Link className="nav-link" to="/account">
                                 My profile
-                            </a>
+                            </Link>
                         </li>
-                        <li className="nav-item">
-                            <a
-                                className="nav-link"
-                                href="#"
+                        <li className="nav-item navigation--logout-link">
+                            <button
+                                type="button"
+                                className="btn btn-danger"
                                 onClick={this.onLogoutClick}
                             >
                                 Log out
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -98,9 +80,10 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    // logoutUser: PropTypes.func.isRequired
+    logoutUser: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
 });
+
 export default connect(mapStateToProps, { logoutUser })(Header);

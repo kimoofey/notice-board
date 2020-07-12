@@ -30,7 +30,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid login--container">
                 <div className="row justify-content-md-center">
                     <div className="col-md-6">
                         <Formik

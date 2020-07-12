@@ -13,8 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './MainPage.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import CustomCarousel from '../Carousel';
 import { fetchCategories } from '../../actions/CategoriesActions';
+import Spinner from '../Spinner/Spinner';
 
 class MainPage extends Component {
     componentDidMount() {
@@ -49,13 +51,13 @@ class MainPage extends Component {
                         <div className="col-md-5 d-flex align-items-center justify-content-center flex-column">
                             <div className="">
                                 <h1>Notice Board</h1>
-                                <button type="button" id="home-button">
+                                <button type="button" className="btn btn-info">
                                     Start now
                                 </button>
                                 <Link to="/login">
                                     <button
                                         type="button"
-                                        className="btn btn-danger"
+                                        className="btn btn-success"
                                     >
                                         Login
                                     </button>
@@ -79,7 +81,7 @@ class MainPage extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-md-6 d-flex align-items-center justify-content-center">
+                        <div className="col-md-3 d-flex align-items-center justify-content-center">
                             <CustomCarousel />
                         </div>
                     </div>
@@ -112,7 +114,7 @@ class MainPage extends Component {
                                     sapien. Quisque sem turpis, imperdiet nec
                                     facilisis sit amet, sollicitudin sed lacus.
                                 </p>
-                                <button type="button" id="more-button">
+                                <button type="button" className="btn btn-info">
                                     Learn More
                                 </button>
                             </div>
@@ -121,14 +123,14 @@ class MainPage extends Component {
                 </div>
                 <div className="container-fluid">
                     <h2>Categories</h2>
-                    <div className="row home-container d-flex align-items-center justify-content-center">
+                    <div className="row d-flex align-items-center justify-content-center">
                         {!this.props.categories.isLoading ? (
                             this.props.categories.categories.map((item) => (
                                 <div className="col-md-3" key={item.id}>
                                     <div className="card categories-card border-0">
                                         <img
                                             src={item.img}
-                                            alt="Card image cap"
+                                            alt="Card"
                                             className="card-img-top"
                                         />
                                         <div className="card-body">
@@ -140,9 +142,7 @@ class MainPage extends Component {
                                 </div>
                             ))
                         ) : (
-                            <div className="spinner-border" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div>
+                            <Spinner />
                         )}
                     </div>
                 </div>
@@ -163,4 +163,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
 
 MainPage.propTypes = {
     // handleStartButton: PropTypes.func.isRequired
+    fetchCategories: PropTypes.func,
 };

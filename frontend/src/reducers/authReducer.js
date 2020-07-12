@@ -1,4 +1,5 @@
 import { SET_CURRENT_USER, USER_LOADING } from '../constants/AuthTypes';
+
 const isEmpty = require('is-empty');
 
 const initialState = {

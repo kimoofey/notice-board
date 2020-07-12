@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const items = [
+const mockedData = [
     {
         src: 'https://via.placeholder.com/350?text=Carousel1',
         altText: 'Slide 1',
@@ -19,7 +19,7 @@ const items = [
     },
 ];
 
-function CustomCarousel() {
+function CustomCarousel(items = mockedData) {
     return (
         <div
             id="carouselExampleIndicators"
@@ -32,7 +32,7 @@ function CustomCarousel() {
                         <div className="carousel-item active">
                             <img
                                 src={item.src}
-                                className="d-block w-100"
+                                className="d-block"
                                 alt={item.altText}
                             />
                         </div>
@@ -68,7 +68,7 @@ function CustomCarousel() {
 }
 
 CustomCarousel.propTypes = {
-    items: PropTypes.array,
+    items: PropTypes.array.isRequired,
 };
 
 export default CustomCarousel;

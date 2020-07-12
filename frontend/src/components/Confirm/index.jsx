@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { notify } from 'react-notify-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '../Spinner/Spinner';
+import './Confirm.css';
 
 export default class Confirm extends Component {
     constructor(props) {
@@ -29,13 +32,20 @@ export default class Confirm extends Component {
     // spinner is stopped and turned into a button that takes the user back to the
     // <Landing > component so they can confirm another email address.
     render = () => (
-        <div className="confirm">
+        <div className="container-fluid confirm--container">
             {this.state.confirming ? (
-                <Spinner size="8x" spinning={'spinning'} />
+                <Spinner />
             ) : (
-                <Link to="/">
-                    <Spinner size="8x" spinning={''} />
-                </Link>
+                <div className="confirm--result">
+                    <Link to="/">
+                        <FontAwesomeIcon
+                            icon={faCheck}
+                            size="5x"
+                            color="green"
+                        />
+                    </Link>
+                    <p>Email confirmed!</p>
+                </div>
             )}
         </div>
     );

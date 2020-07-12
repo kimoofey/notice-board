@@ -18,7 +18,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid register--container">
                 <div className="row justify-content-md-center">
                     <div className="col-md-6">
                         <Formik
@@ -75,11 +75,13 @@ class Register extends Component {
                                                 </p>
                                             </div>
                                         </Link>
-                                        <h3>Register</h3>
-                                        <p>
-                                            Already have an account?{' '}
-                                            <Link to="/login">Login</Link>
-                                        </p>
+                                        <div className="text-center">
+                                            <h3>Register</h3>
+                                            <p>
+                                                {'Already have an account? '}
+                                                <Link to="/login">Login</Link>
+                                            </p>
+                                        </div>
                                         <div className="form-group">
                                             <label htmlFor="firstName">
                                                 First Name
@@ -155,11 +157,17 @@ class Register extends Component {
                                                 </div>
                                             ) : null}
                                         </div>
-                                        <button type="submit" color="primary">
+                                        <button
+                                            type="submit"
+                                            className="btn btn-success"
+                                        >
                                             Submit
                                         </button>
                                         <Link to="/login">
-                                            <button type="button" color="link">
+                                            <button
+                                                type="button"
+                                                className="btn btn-danger"
+                                            >
                                                 Cancel
                                             </button>
                                         </Link>
