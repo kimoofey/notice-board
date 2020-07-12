@@ -4,6 +4,7 @@ module.exports = {
         es6: true,
     },
     extends: ['airbnb', 'prettier', 'prettier/react'],
+    parser: 'babel-eslint',
     globals: {
         Atomics: 'readonly',
         SharedArrayBuffer: 'readonly',

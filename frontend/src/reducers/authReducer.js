@@ -1,4 +1,5 @@
 import { SET_CURRENT_USER, USER_LOADING } from '../constants/AuthTypes';
+const isEmpty = require('is-empty');
 
 const initialState = {
     isAuthenticated: false,
@@ -11,7 +12,7 @@ export default function authReducer(state = initialState, action) {
         case SET_CURRENT_USER:
             return {
                 ...state,
-                isAuthenticated: !action.payload.isEmpty(),
+                isAuthenticated: !isEmpty(action.payload),
                 user: action.payload,
             };
         case USER_LOADING:
