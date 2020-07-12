@@ -1,12 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
-const Spinner = (props) => {
-    const { size, spinning } = props;
+const Spinner = () => {
     return (
-        <div className={`fadeIn ${spinning}`}>
-            <FontAwesomeIcon icon={faCheck} size={size} color="green" />
+        <div className="spinner-border text-secondary" role="status">
+            <span className="sr-only">Loading...</span>
         </div>
     );
 };

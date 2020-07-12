@@ -3,19 +3,6 @@ p,
     color: #94a1b2;
 }
 
-.container-fluid {
-    padding-top: 50px;
-}
-
-.title,
-.options {
-    background-color: #16161a;
-}
-
-.home-container {
-    height: 80vh;
-}
-
 .social-icon {
     margin: 10px 0;
 }
@@ -29,21 +16,6 @@ p,
     color: #fffffe;
 }
 
-.about {
-    background-color: #242629;
-}
-
 .card-body {
     background-color: #16161a;
-}
-
-#home-button,
-#more-button {
-    background-color: #7f5af0;
-}
-
-#spinner {
-    width: 3rem;
-    height: 3rem;
-    color: #2cb67d;
 }

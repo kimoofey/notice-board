@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 function rmdir(d) {
-    var self = arguments.callee;
+    const self = arguments.callee;
     if (fs.existsSync(d)) {
         fs.readdirSync(d).forEach(function (file) {
-            var C = d + '/' + file;
+            const C = d + '/' + file;
             if (fs.statSync(C).isDirectory()) self(C);
             else fs.unlinkSync(C);
         });

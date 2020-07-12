@@ -1,16 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Button,
-    Card,
-    CardBody,
-    CardImg,
-    CardTitle,
-    Col,
-    Container,
-    Row,
-    Spinner,
-} from 'reactstrap';
-import {
     faFacebook,
     faInstagram,
     faTwitter,
@@ -24,8 +13,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './MainPage.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import CustomCarousel from '../Carousel';
 import { fetchCategories } from '../../actions/CategoriesActions';
+import Spinner from '../Spinner/Spinner';
 
 class MainPage extends Component {
     componentDidMount() {
@@ -35,15 +26,12 @@ class MainPage extends Component {
     render() {
         return (
             <section>
-                <Container className="title" fluid>
-                    <Col md="6" className="">
+                <div className="container-fluid">
+                    <div className="col-md-6">
                         <h2>Люди – людям</h2>
-                    </Col>
-                    <Row className="home-container">
-                        <Col
-                            md="1"
-                            className="d-flex align-items-center justify-content-center flex-column"
-                        >
+                    </div>
+                    <div className="row home-container">
+                        <div className="col-md-1 d-flex align-items-center justify-content-center flex-column">
                             <FontAwesomeIcon
                                 size="lg"
                                 className="social-icon"
@@ -59,16 +47,20 @@ class MainPage extends Component {
                                 className="social-icon"
                                 icon={faInstagram}
                             />
-                        </Col>
-                        <Col
-                            md="5"
-                            className="d-flex align-items-center justify-content-center flex-column"
-                        >
+                        </div>
+                        <div className="col-md-5 d-flex align-items-center justify-content-center flex-column">
                             <div className="">
                                 <h1>Notice Board</h1>
-                                <Button id="home-button">Start now</Button>
+                                <button type="button" className="btn btn-info">
+                                    Start now
+                                </button>
                                 <Link to="/login">
-                                    <Button color="danger">Login</Button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-success"
+                                    >
+                                        Login
+                                    </button>
                                 </Link>
                             </div>
                             <div>
@@ -88,25 +80,22 @@ class MainPage extends Component {
                                     icon={faHeadset}
                                 />
                             </div>
-                        </Col>
-                        <Col
-                            md="6"
-                            className="d-flex align-items-center justify-content-center"
-                        >
+                        </div>
+                        <div className="col-md-3 d-flex align-items-center justify-content-center">
                             <CustomCarousel />
-                        </Col>
-                    </Row>
-                </Container>
-                <Container className="about" fluid>
+                        </div>
+                    </div>
+                </div>
+                <div className="container-fluid">
                     <h2>About Us</h2>
-                    <Row className="home-container d-flex align-items-center justify-content-center">
-                        <Col md="5">
+                    <div className="row d-flex align-items-center justify-content-center">
+                        <div className="col-md-5">
                             <img
                                 src="https://via.placeholder.com/350?text=Pretty-image"
                                 alt=""
                             />
-                        </Col>
-                        <Col md="5">
+                        </div>
+                        <div className="col-md-5">
                             <div className="text-justify">
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur
@@ -125,35 +114,38 @@ class MainPage extends Component {
                                     sapien. Quisque sem turpis, imperdiet nec
                                     facilisis sit amet, sollicitudin sed lacus.
                                 </p>
-                                <Button id="more-button">Learn More</Button>
+                                <button type="button" className="btn btn-info">
+                                    Learn More
+                                </button>
                             </div>
-                        </Col>
-                    </Row>
-                </Container>
-                <Container className="options" fluid>
+                        </div>
+                    </div>
+                </div>
+                <div className="container-fluid">
                     <h2>Categories</h2>
-                    <Row className="home-container d-flex align-items-center justify-content-center">
+                    <div className="row d-flex align-items-center justify-content-center">
                         {!this.props.categories.isLoading ? (
                             this.props.categories.categories.map((item) => (
-                                <Col md="3" key={item.id}>
-                                    <Card className="categories-card border-0">
-                                        <CardImg
-                                            top
-                                            width="100%"
+                                <div className="col-md-3" key={item.id}>
+                                    <div className="card categories-card border-0">
+                                        <img
                                             src={item.img}
-                                            alt="Card image cap"
+                                            alt="Card"
+                                            className="card-img-top"
                                         />
-                                        <CardBody>
-                                            <CardTitle>{item.title}</CardTitle>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
+                                        <div className="card-body">
+                                            <div className="card-title">
+                                                {item.title}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             ))
                         ) : (
-                            <Spinner id="spinner" type="grow" />
+                            <Spinner />
                         )}
-                    </Row>
-                </Container>
+                    </div>
+                </div>
             </section>
         );
     }
@@ -171,4 +163,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
 
 MainPage.propTypes = {
     // handleStartButton: PropTypes.func.isRequired
+    fetchCategories: PropTypes.func,
 };
