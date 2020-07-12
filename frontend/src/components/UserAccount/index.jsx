@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
 import { logoutUser } from '../../actions/authActions';
 import './UserAccount.css';
 
@@ -21,9 +20,13 @@ class UserAccount extends Component {
                         <p className="flow-text grey-text text-darken-1">
                             You are logged into a user account!
                         </p>
-                        <Button onClick={this.onLogoutClick} color="danger">
+                        <button
+                            type="button"
+                            onClick={this.onLogoutClick}
+                            className="btn btn-danger"
+                        >
                             Logout
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>

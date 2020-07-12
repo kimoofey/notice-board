@@ -1,73 +1,98 @@
 import React, { Component } from 'react';
-import {
-    Button,
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavbarToggler,
-    NavLink,
-    UncontrolledDropdown,
-} from 'reactstrap';
 import './Header.css';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpenDropdown: false,
-            isOpenBurger: false,
-        };
-    }
-
     onLogoutClick(e) {
         e.preventDefault();
         logoutUser();
     }
 
-    handleBurgerClick = () => {
-        this.setState({ isOpenBurger: !this.state.isOpenBurger });
-    };
-
     render() {
-        const { isOpenBurger } = this.state;
         return (
-            <Navbar color="dark" dark expand="md" fixed="top">
-                <NavbarBrand href="/">Notice Board</NavbarBrand>
-                <NavbarToggler onClick={this.handleBurgerClick} />
-                <Collapse isOpen={isOpenBurger} navbar>
-                    <Nav className="mr-auto" navbar>
-                        <UncontrolledDropdown>
-                            <DropdownToggle nav caret>
-                                Options
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>
-                                    <NavLink disabled href="/components/">
-                                        Daily Deals
-                                    </NavLink>
-                                </DropdownItem>
-                                <DropdownItem>
-                                    <NavLink disabled href="/create/">
-                                        Create Application
-                                    </NavLink>
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Nav>
-                    <Button href="/account/" color="dark">
-                        My profile
-                    </Button>
-                    <Button onClick={this.onLogoutClick} color="dark">
-                        Log out
-                    </Button>
-                </Collapse>
-            </Navbar>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href="#">
+                    Notice Board
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div
+                    className="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                >
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">
+                                Home <span className="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">
+                                Link
+                            </a>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Dropdown
+                            </a>
+                            <div
+                                className="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <a className="dropdown-item" href="#">
+                                    Daily Deals
+                                </a>
+                                <a className="dropdown-item" href="#">
+                                    Create Application
+                                </a>
+                            </div>
+                        </li>
+                        <li className="nav-item">
+                            <a
+                                className="nav-link disabled"
+                                href="#"
+                                tabIndex="-1"
+                                aria-disabled="true"
+                            >
+                                Disabled
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/account/">
+                                My profile
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a
+                                className="nav-link"
+                                href="#"
+                                onClick={this.onLogoutClick}
+                            >
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         );
     }
 }

@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
 import * as Yup from 'yup';
-import {
-    Alert,
-    Button,
-    Container,
-    Form,
-    FormGroup,
-    Input,
-    Label,
-} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link, withRouter } from 'react-router-dom';
@@ -70,8 +61,8 @@ class Register extends Component {
                             }}
                         >
                             {(formik) => (
-                                <Container className="text-left">
-                                    <Form onSubmit={formik.handleSubmit}>
+                                <div className="container text-left">
+                                    <form onSubmit={formik.handleSubmit}>
                                         <Link to="/">
                                             <div className="d-flex align-items-center">
                                                 <FontAwesomeIcon
@@ -89,85 +80,91 @@ class Register extends Component {
                                             Already have an account?{' '}
                                             <Link to="/login">Login</Link>
                                         </p>
-                                        <FormGroup className="">
-                                            <Label for="firstName">
+                                        <div className="form-group">
+                                            <label htmlFor="firstName">
                                                 First Name
-                                            </Label>
-                                            <Input
+                                            </label>
+                                            <input
                                                 className="form-control"
                                                 name="firstName"
                                                 {...formik.getFieldProps(
                                                     'firstName'
                                                 )}
+                                                id="firstName"
                                             />
                                             {formik.touched.firstName &&
                                             formik.errors.firstName ? (
-                                                <Alert color="danger">
+                                                <div className="alert alert-danger">
                                                     {formik.errors.firstName}
-                                                </Alert>
+                                                </div>
                                             ) : null}
-                                        </FormGroup>
-                                        <FormGroup className="">
-                                            <Label for="lastName">
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="lastName">
                                                 Last Name
-                                            </Label>
-                                            <Input
+                                            </label>
+                                            <input
                                                 className="form-control"
                                                 name="lastName"
                                                 {...formik.getFieldProps(
                                                     'lastName'
                                                 )}
+                                                id="lastName"
                                             />
                                             {formik.touched.lastName &&
                                             formik.errors.lastName ? (
-                                                <Alert color="danger">
+                                                <div className="alert alert-danger">
                                                     {formik.errors.lastName}
-                                                </Alert>
+                                                </div>
                                             ) : null}
-                                        </FormGroup>
-                                        <FormGroup className="">
-                                            <Label for="email">Email</Label>
-                                            <Input
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="email">Email</label>
+                                            <input
                                                 className="form-control"
                                                 name="email"
                                                 {...formik.getFieldProps(
                                                     'email'
                                                 )}
+                                                id="email"
                                             />
                                             {formik.touched.email &&
                                             formik.errors.email ? (
-                                                <Alert color="danger">
+                                                <div className="alert alert-danger">
                                                     {formik.errors.email}
-                                                </Alert>
+                                                </div>
                                             ) : null}
-                                        </FormGroup>
-                                        <FormGroup className="">
-                                            <Label for="password">
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="password">
                                                 Password
-                                            </Label>
-                                            <Input
+                                            </label>
+                                            <input
                                                 className="form-control"
                                                 name="password"
                                                 type="password"
                                                 {...formik.getFieldProps(
                                                     'password'
                                                 )}
+                                                id="password"
                                             />
                                             {formik.touched.password &&
                                             formik.errors.password ? (
-                                                <Alert color="danger">
+                                                <div className="alert alert-danger">
                                                     {formik.errors.password}
-                                                </Alert>
+                                                </div>
                                             ) : null}
-                                        </FormGroup>
-                                        <Button type="submit" color="primary">
+                                        </div>
+                                        <button type="submit" color="primary">
                                             Submit
-                                        </Button>
+                                        </button>
                                         <Link to="/login">
-                                            <Button color="link">Cancel</Button>
+                                            <button type="button" color="link">
+                                                Cancel
+                                            </button>
                                         </Link>
-                                    </Form>
-                                </Container>
+                                    </form>
+                                </div>
                             )}
                         </Formik>
                     </div>

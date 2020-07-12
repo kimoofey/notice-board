@@ -1,12 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselIndicators,
-    CarouselCaption,
-} from 'reactstrap';
 
 const items = [
     {
@@ -26,78 +19,55 @@ const items = [
     },
 ];
 
-class CustomCarousel extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { activeIndex: 0, animating: false };
-    }
-
-    next = () => {
-        if (this.state.animating) return;
-        const nextIndex =
-            this.state.activeIndex === items.length - 1
-                ? 0
-                : this.state.activeIndex + 1;
-        this.setState({ activeIndex: nextIndex });
-    };
-
-    previous = () => {
-        if (this.state.animating) return;
-        const nextIndex =
-            this.state.activeIndex === 0
-                ? items.length - 1
-                : this.state.activeIndex - 1;
-        this.setState({ activeIndex: nextIndex });
-    };
-
-    goToIndex = (newIndex) => {
-        if (this.state.animating) return;
-        this.setState({ activeIndex: newIndex });
-    };
-
-    render() {
-        return (
-            <Carousel
-                activeIndex={this.state.activeIndex}
-                next={this.next}
-                previous={this.previous}
-            >
-                <CarouselIndicators
-                    items={items}
-                    activeIndex={this.state.activeIndex}
-                    onClickHandler={this.goToIndex}
-                />
+function CustomCarousel() {
+    return (
+        <div
+            id="carouselExampleIndicators"
+            className="carousel slide"
+            data-ride="carousel"
+        >
+            <div className="carousel-inner">
                 {items.map((item) => {
                     return (
-                        <CarouselItem
-                            onExiting={() => this.setState({ animating: true })}
-                            onExited={() => this.setState({ animating: false })}
-                            key={item.src}
-                        >
-                            <img src={item.src} alt={item.altText} />
-                            <CarouselCaption
-                                captionText={item.caption}
-                                captionHeader={item.caption}
+                        <div className="carousel-item active">
+                            <img
+                                src={item.src}
+                                className="d-block w-100"
+                                alt={item.altText}
                             />
-                        </CarouselItem>
+                        </div>
                     );
                 })}
-                <CarouselControl
-                    direction="prev"
-                    directionText="Previous"
-                    onClickHandler={this.previous}
+            </div>
+            <a
+                className="carousel-control-prev"
+                href="#"
+                role="button"
+                data-slide="prev"
+            >
+                <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
                 />
-                <CarouselControl
-                    direction="next"
-                    directionText="Next"
-                    onClickHandler={this.next}
+                <span className="sr-only">Previous</span>
+            </a>
+            <a
+                className="carousel-control-next"
+                href="#"
+                role="button"
+                data-slide="next"
+            >
+                <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
                 />
-            </Carousel>
-        );
-    }
+                <span className="sr-only">Next</span>
+            </a>
+        </div>
+    );
 }
 
-Carousel.propTypes = {
+CustomCarousel.propTypes = {
     items: PropTypes.array,
 };
 
