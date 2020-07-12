@@ -1,65 +1,81 @@
 import React, { Component } from 'react';
 import {
+    Button,
     Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
     Nav,
-    NavItem,
+    Navbar,
+    NavbarBrand,
+    NavbarToggler,
     NavLink,
     UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    NavbarText,
 } from 'reactstrap';
+import './Header.css';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
 
 class Header extends Component {
-    // const [isOpen, setIsOpen] = useState(false);
-    //
-    // const toggle = () => setIsOpen(!isOpen);
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpenDropdown: false,
+            isOpenBurger: false,
+        };
+    }
+
+    onLogoutClick(e) {
+        e.preventDefault();
+        logoutUser();
+    }
+
+    handleBurgerClick = () => {
+        this.setState({ isOpenBurger: !this.state.isOpenBurger });
+    };
 
     render() {
+        const { isOpenBurger } = this.state;
         return (
-            <div>
-                <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
-                    <NavbarToggler
-                        onClick={() => console.log('click NavbarToggler!')}
-                    />
-                    <Collapse
-                        isOpen={() => console.log('click Collapse!')}
-                        navbar
-                    >
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">
-                                    Components
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">
-                                    GitHub
-                                </NavLink>
-                            </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>Option 1</DropdownItem>
-                                    <DropdownItem>Option 2</DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>Reset</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </Nav>
-                        <NavbarText>Simple Text</NavbarText>
-                    </Collapse>
-                </Navbar>
-            </div>
+            <Navbar color="dark" dark expand="md" fixed="top">
+                <NavbarBrand href="/">Notice Board</NavbarBrand>
+                <NavbarToggler onClick={this.handleBurgerClick} />
+                <Collapse isOpen={isOpenBurger} navbar>
+                    <Nav className="mr-auto" navbar>
+                        <UncontrolledDropdown>
+                            <DropdownToggle nav caret>
+                                Options
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem>
+                                    <NavLink disabled href="/components/">
+                                        Daily Deals
+                                    </NavLink>
+                                </DropdownItem>
+                                <DropdownItem>
+                                    <NavLink disabled href="/create/">
+                                        Create Application
+                                    </NavLink>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+                    </Nav>
+                    <Button href="/account/" color="dark">
+                        My profile
+                    </Button>
+                    <Button onClick={this.onLogoutClick} color="dark">
+                        Log out
+                    </Button>
+                </Collapse>
+            </Navbar>
         );
     }
 }
 
-export default Header;
+Header.propTypes = {
+    // logoutUser: PropTypes.func.isRequired
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+});
+export default connect(mapStateToProps, { logoutUser })(Header);

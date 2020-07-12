@@ -5,9 +5,12 @@ import { notify } from 'react-notify-toast';
 import Spinner from '../Spinner/Spinner';
 
 export default class Confirm extends Component {
-    state = {
-        confirming: true,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            confirming: true,
+        };
+    }
 
     componentDidMount() {
         const { id } = this.props.match.params;
