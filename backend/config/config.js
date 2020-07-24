@@ -4,4 +4,8 @@ exports.CLIENT_ORIGIN = process.env.NODE_ENV === 'production'
     ? process.env.CLIENT_ORIGIN
     : 'http://localhost:3000';
 
-exports.SECRET_KEY = 'secret';
+if (process.env.NODE_ENV === 'production') {
+    exports.SECRET_KEY = process.env.JWTSECRETKEY;
+} else {
+    exports.SECRET_KEY = require('./jwtSecretKey');
+}

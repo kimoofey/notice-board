@@ -6,9 +6,8 @@ const logger = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const indexRouter = require('./backend/routes');
-const categoriesRouter = require('./backend/routes/categories');
 const users = require('./backend/routes/api/users');
-const signup = require('./backend/routes/api/signup');
+const signup = require('./backend/routes/api/user');
 
 const app = express();
 
@@ -33,9 +32,8 @@ app.use(passport.initialize());
 require('./backend/config/passport')(passport);
 
 app.use('/', indexRouter);
-app.use('/categories', categoriesRouter);
 app.use('/api/users', users);
-app.use('/api', signup);
+app.use('/api/user', signup);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
