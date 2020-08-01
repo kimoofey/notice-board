@@ -34,8 +34,10 @@ require('./backend/config/passport')(passport);
 app.use('/', indexRouter);
 app.use('/api/users', users);
 app.use('/api/user', signup);
+// for parsing application/json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
