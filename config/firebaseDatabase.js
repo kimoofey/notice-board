@@ -2,11 +2,10 @@ const admin = require('firebase-admin');
 let serviceAccount = {};
 
 if (process.env.NODE_ENV === 'production') {
-    serviceAccount = process.env.FIREBASEACCOUNTKEY;
+    serviceAccount = process.env.FIREBASEADMINKEY;
 } else {
-    serviceAccount = require('./serviceAccountKey.json');
+    serviceAccount = require('./adminAccountKey.json');
 }
-
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
