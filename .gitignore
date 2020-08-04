@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/backend/config/serviceAccountKey.json
+/backend/config/adminAccountKey.json
 /backend/config/jwtSecretKey.json
+/backend/config/accountKey.json
 
 # dependencies
 frontend/node_modules

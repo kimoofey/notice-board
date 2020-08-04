@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const indexRouter = require('./backend/routes');
 const users = require('./backend/routes/api/users');
 const signup = require('./backend/routes/api/user');
@@ -24,8 +25,11 @@ app.set('views', path.join(__dirname, 'backend/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(fileUpload());
+// for parsing application/json
+app.use(bodyParser.json());
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'backend/public')));
 app.use(passport.initialize());
@@ -34,10 +38,6 @@ require('./backend/config/passport')(passport);
 app.use('/', indexRouter);
 app.use('/api/users', users);
 app.use('/api/user', signup);
-// for parsing application/json
-app.use(bodyParser.json());
-// for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

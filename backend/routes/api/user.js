@@ -1,8 +1,8 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const router = express.Router();
 const firebase = require('../../config/firebase');
 const admin = require('../../config/firebaseDatabase');
-const storage = require('../../config/firebaseStorage');
 const db = admin.firestore();
 db.settings({ ignoreUndefinedProperties: true });
 const userCollection = 'users';
@@ -63,7 +63,7 @@ router.put('/', async (req, res) => {
             data.name = req.body.name;
         }
         if (req.body.url) {
-            data.url = req.body.url;
+            data.URL = req.body.url;
         }
         if (req.body.description) {
             data.description = req.body.description;
@@ -105,6 +105,33 @@ router.get('/messages', async (req, res) => {
         res.status(200).json(messages);
     } catch (error) {
         res.status(500).send(error);
+    }
+});
+
+/* Upload user's avatar */
+router.post('/avatar', async (req, res) => {
+    try {
+        if (req.files === null) {
+            return res.status(400).json({ msg: 'No file uploaded' });
+        }
+        const file = req.files.file;
+        file.mv(`${__dirname}/../../build/static//media/${file.name}`, error => {
+            if (error) {
+                return res.status(500).send(error);
+            }
+        });
+        const uuid = uuidv4();
+        const bucket = await admin.storage().bucket().upload(`${__dirname}/../../build/static//media/${file.name}`, {
+            gzip: true,
+            metadata: {
+                cacheControl: 'public, max-age=31536000',
+                firebaseStorageDownloadTokens: uuid,
+            },
+        });
+        const downloadURL = `https://firebasestorage.googleapis.com/v0/b/${'testing-chat-10f25.appspot.com'}/o/${encodeURIComponent(file.name)}?alt=media&token=${uuid}`;
+        return res.status(200).json({ downloadURL: downloadURL });
+    } catch (error) {
+        return res.status(500).json({ msg: 'Server error' });
     }
 });
 
