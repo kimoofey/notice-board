@@ -1,0 +1,11 @@
+os: linux
+language: node_js
+node_js:
+  - stable
+branches:
+  only:
+    - master
+    - dev
+script:
+  - npm ci
+  - npm run build
