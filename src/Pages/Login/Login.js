@@ -22,6 +22,7 @@ export default class Login extends React.Component {
             isLoading: true,
             email: '',
             password: '',
+            error: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,9 +46,16 @@ export default class Login extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.setState({email: '', password: '', error: ''})
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
+        if (this.state.email.length === 0 || this.state.password.length === 0) {
+            this.setState({error: 'Fill all inputs!'});
+            return;
+        }
         await axios.post('https://web-notice-board-server-dev.herokuapp.com/api/user/auth', {
             email: this.state.email,
             password: this.state.password,
@@ -66,8 +74,10 @@ export default class Login extends React.Component {
                 }
             })
             .catch((error) => {
-                document.getElementById('1').innerHTML = 'incorrect email/password or poor internet';
+                const responseMsg = error.response ? error.response.data.message : 'Incorrect email/password or poor internet';
+                this.props.showToast(2, responseMsg);
             });
+        this.setState({error: ''});
     }
 
     render() {
@@ -170,10 +180,6 @@ export default class Login extends React.Component {
                                 onChange={this.handleChange}
                                 value={this.state.password}
                             />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary"/>}
-                                label="Remember me"
-                            />
                             <Typography component="h6" variant="h5">
                                 {this.state.error ? (
                                     <p className="text-danger">{this.state.error}</p>
@@ -191,9 +197,6 @@ export default class Login extends React.Component {
                                 <Link to="/signup" variant="body2">
                                     Sign Up
                                 </Link>
-                            </div>
-                            <div className="error">
-                                <p id='1' style={{color: 'red'}}></p>
                             </div>
                         </form>
                     </div>
