@@ -6,6 +6,8 @@ import Chat from './Pages/Chat/Chat';
 import Profile from './Pages/Profile/Profile';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
+import SecretPass from './Pages/SecretPass/SecretPass';
+import SecretChat from './Pages/SecretChat/SecretChat';
 import {toast, ToastContainer} from 'react-toastify';
 
 class App extends Component {
@@ -59,6 +61,14 @@ class App extends Component {
                     <Route
                         path="/chat"
                         render={props => <Chat showToast={this.showToast}{...props}/>}
+                    />
+                    <Route
+                        path="/password"
+                        render={props => <SecretPass showToast={this.showToast}{...props}/>}
+                    />
+                    <Route
+                        path="/schat"
+                        render={props => <SecretChat showToast={this.showToast}{...props}/>}
                     />
 
 
