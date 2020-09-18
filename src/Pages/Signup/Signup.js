@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Signup.css';
-import {Card} from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -29,9 +29,9 @@ export default class SignUp extends Component {
 
     async handleSubmit(event) {
 
-        const {password, email, name} = this.state;
+        const { password, email, name } = this.state;
         event.preventDefault();
-        this.setState({error: ''});
+        this.setState({ error: '' });
         await axios.post('https://web-notice-board-server-dev.herokuapp.com/api/user', {
             email: email,
             password: password,
@@ -106,7 +106,7 @@ export default class SignUp extends Component {
                             value={this.state.email}
                         />
                         <div>
-                            <p style={{color: 'grey', fontSize: '15px', marginLeft: '0'}}>Password :length Greater
+                            <p style={{ color: 'grey', fontSize: '15px', marginLeft: '0' }}>Password :length Greater
                                 than 6 (alphabet,number,special character)</p>
                         </div>
 
@@ -138,7 +138,7 @@ export default class SignUp extends Component {
                             value={this.state.name}
                         />
                         <div>
-                            <p style={{color: 'grey', fontSize: '15px'}}>Please fill all fields and password should be
+                            <p style={{ color: 'grey', fontSize: '15px' }}>Please fill all fields and password should be
                                 greater than 6</p>
                         </div>
                         <div className="CenterAliningItems">
@@ -147,13 +147,13 @@ export default class SignUp extends Component {
                             </button>
                         </div>
                         <div>
-                            <p style={{color: 'grey'}}>Already have and account?</p>
+                            <p style={{ color: 'grey' }}>Already have and account?</p>
                             <Link to="/login">
                                 Login In
                             </Link>
                         </div>
                         <div className="error">
-                            <p id='1' style={{color: 'red'}}></p>
+                            <p id='1' style={{ color: 'red' }}></p>
 
                         </div>
 

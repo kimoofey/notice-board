@@ -51,15 +51,15 @@ export default class Profile extends React.Component {
                 this.props.showToast(0, 'This file is not an image');
                 return;
             }
-            this.setState({newPhoto: event.target.files[0]});
-            this.setState({photoUrl: URL.createObjectURL(event.target.files[0])});
+            this.setState({ newPhoto: event.target.files[0] });
+            this.setState({ photoUrl: URL.createObjectURL(event.target.files[0]) });
         } else {
             this.props.showToast(0, 'Something wrong with input file');
         }
     };
 
     uploadAvatar = async () => {
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         if (this.state.newPhoto) {
             const formData = new FormData();
             formData.append('file', this.state.newPhoto);
@@ -109,11 +109,11 @@ export default class Profile extends React.Component {
                 if (isUpdatedPhotoURL) {
                     localStorage.setItem(LoginString.PhotoURL, downloadURL);
                 }
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
                 this.props.showToast(1, 'Update info success');
             })
             .catch((error) => {
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
                 this.props.showToast(0, 'There is some troubles. Please try again');
             });
     };

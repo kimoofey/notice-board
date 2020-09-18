@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,7 +68,7 @@ export default class ChatBox extends React.Component {
             this.removeListener();
         }
         this.listMessage.length = 0;
-        this.setState({isLoading: true});
+        this.setState({ isLoading: true });
         if (
             this.hashString(this.currentUserId) <=
             this.hashString(this.currentPeerUser.id)
@@ -95,7 +95,7 @@ export default class ChatBox extends React.Component {
                             this.listMessage.push(change.doc.data());
                         }
                     });
-                    this.setState({isLoading: false});
+                    this.setState({ isLoading: false });
                 },
                 err => {
                     this.props.showToast(0, err.toString());
@@ -107,7 +107,7 @@ export default class ChatBox extends React.Component {
         console.log(content);
         let notificationMessages = [];
         if (this.state.isShowStiker && type === 2) {
-            this.setState({isShowStiker: false});
+            this.setState({ isShowStiker: false });
         }
         if (content.trim() === '') {
             return;
@@ -135,7 +135,7 @@ export default class ChatBox extends React.Component {
             .doc(timestamp)
             .set(itemMessage)
             .then(() => {
-                this.setState({inputValue: ''});
+                this.setState({ inputValue: '' });
             });
         this.currentPeerUserMessages.map((item) => {
             if (item.notificationId !== this.currentUserId) {
@@ -168,22 +168,22 @@ export default class ChatBox extends React.Component {
         }
     };
     openListSticker = () => {
-        this.setState({isShowSticker: !this.state.isShowSticker});
+        this.setState({ isShowSticker: !this.state.isShowSticker });
     };
 
     onChoosePhoto = event => {
         if (event.target.files && event.target.files[0]) {
-            this.setState({isLoading: true});
+            this.setState({ isLoading: true });
             this.currentPhotoFile = event.target.files[0];
             const prefixFiletype = event.target.files[0].type.toString();
             if (prefixFiletype.indexOf('image/') === 0) {
                 this.uploadPhoto();
             } else {
-                this.setState({isLoading: false});
+                this.setState({ isLoading: false });
                 this.props.showToast(0, 'This file is not an image');
             }
         } else {
-            this.setState({isLoading: false});
+            this.setState({ isLoading: false });
         }
     };
     uploadPhoto = () => {
@@ -201,18 +201,18 @@ export default class ChatBox extends React.Component {
                 LoginString.UPLOAD_CHANGED,
                 null,
                 err => {
-                    this.setState({isLoading: false});
+                    this.setState({ isLoading: false });
                     this.props.showToast(0, err.message);
                 },
                 () => {
                     uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                        this.setState({isLoading: false});
+                        this.setState({ isLoading: false });
                         this.onSendMessage(downloadURL, 1);
                     });
                 },
             );
         } else {
-            this.setState({isLoading: false});
+            this.setState({ isLoading: false });
             this.props.showToast(0, 'File is null');
         }
     };
@@ -560,7 +560,7 @@ export default class ChatBox extends React.Component {
                         alt=""
                     />
                     <span className="textHeaderChatBoard">
-                    <p style={{fontSize: '20px'}}> {this.currentPeerUser.name}</p>
+                    <p style={{ fontSize: '20px' }}> {this.currentPeerUser.name}</p>
                 </span>
                     <div className="aboutme">
                         <span><p>{this.currentPeerUser.description}</p></span>
@@ -569,7 +569,7 @@ export default class ChatBox extends React.Component {
                 <div className="viewListContentChat">
                     {this.renderListMessage()}
                     <div
-                        style={{float: 'left', clear: 'both'}}
+                        style={{ float: 'left', clear: 'both' }}
                         ref={el => {
                             this.messagesEnd = el;
                         }}
@@ -606,7 +606,7 @@ export default class ChatBox extends React.Component {
                         placeholder="Type a message"
                         value={this.state.inputValue}
                         onChange={event => {
-                            this.setState({inputValue: event.target.value});
+                            this.setState({ inputValue: event.target.value });
                         }}
                         onKeyPress={this.onKeyboardPress}
                     />

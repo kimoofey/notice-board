@@ -12,8 +12,8 @@ class Footer extends React.Component {
                 {new Date().getFullYear()}
                 {'.'}
             </h2>
-        )
-    }
+        );
+    };
 
     render() {
         return (
@@ -22,7 +22,7 @@ class Footer extends React.Component {
                     {this.Copyright()}
                 </div>
             </footer>
-        )
+        );
     }
 
 }
