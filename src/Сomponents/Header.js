@@ -10,12 +10,9 @@ function Header() {
 
             <div class="header-limiter">
 
-                <h1><a href="/">Coding<span>Cafe</span></a></h1>
+                <h1><a href="/">IBKS</a></h1>
 
                 <nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/">About App</Link>
-                    <Link to="/">Contact Us</Link>
                 </nav>
 
                 <ul>
