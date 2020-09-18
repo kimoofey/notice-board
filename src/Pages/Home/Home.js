@@ -85,15 +85,9 @@ export default class HomePage extends Component {
                         </div>
                         <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
-                            <h2 class="content-head content-head-ribbon">Muhammad Ali</h2>
+                            <h2 class="content-head content-head-ribbon">Institute for Cybersecurity and Information Protection</h2>
 
-                            <p style={{color: 'white'}}>
-                                The Founder of Coding Cafe.
-                            </p>
-                            <p style={{color: 'white'}}>
-                                Currently working at Coding Cafe and busy to explore new ideas with new technologies
-                                being developed
-                            </p>
+            
                         </div>
                     </div>
 
@@ -123,31 +117,10 @@ export default class HomePage extends Component {
                             <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
                                 <h4>Contact Us</h4>
                                 <p>
-                                    For any question or suggestion you can directly contact us on our Facebook Page:
-                                    <a href=" https://web.facebook.com/programming438/"> https://web.facebook.com/programming438/</a>
-                                </p>
-                                <p>
-                                    Twitter:<a href="https://twitter.com/alizeb438">https://twitter.com/alizeb438</a>
-                                </p>
-                                <p>
-                                    Facebook: <a
-                                    href="https://web.facebook.com/alizeb438 ">https://web.facebook.com/alizeb438 </a>
-                                </p>
-                                <p>
-                                    Instagram:<a
-                                    href=" https://www.instagram.com/alizeb438/"> https://www.instagram.com/alizeb438/</a>
+                                    For any question or suggestion you can directly contact us on our VK Page:
+                                    <a href="https://vk.com/ibks_spbstu/"> https://vk.com/ibks_spbstu</a>
                                 </p>
 
-
-                                <h4>More Information</h4>
-                                <p>
-                                    To whom it may concern
-
-                                </p>
-                                <p>
-                                    This App is developed for learning purpose -
-                                    Developed by -Muhammad Ali -Muhammad Haris
-                                </p>
                             </div>
                         </div>
 
