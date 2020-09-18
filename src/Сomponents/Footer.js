@@ -5,9 +5,9 @@ class Footer extends React.Component {
     Copyright = () => {
         return (
             <h2 variant="body2" color="textSecondary" align="center">
-                {'Copyright © '}
+                {'WebApp © '}
 
-                {'Coding Cafe '}
+                {'IBKS '}
 
                 {new Date().getFullYear()}
                 {'.'}
