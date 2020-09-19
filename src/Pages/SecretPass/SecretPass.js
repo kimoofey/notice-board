@@ -5,6 +5,7 @@ import axios from 'axios';
 import LoginString from '../Login/LoginStrings';
 import './SecretPass.css';
 import {Card} from 'react-bootstrap';
+import firebase from '../../Services/firebase';
 
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -67,6 +68,11 @@ export default class Login extends React.Component {
         }
         
     }
+    logout = () => {
+        firebase.auth().signOut();
+        this.props.history.push('/');
+        localStorage.clear();
+    };
     render(){
         const paper = {
             display: 'flex',
@@ -104,6 +110,7 @@ export default class Login extends React.Component {
                                 onChange={this.handleChange}
                                 value={this.state.password}
                             />
+                            <button className="Logout" onClick={this.logout}>Logout</button>
                             <Typography component="h6" variant="h5">
                                 {this.state.error ? (
                                     <p className="text-danger">{this.state.error}</p>
