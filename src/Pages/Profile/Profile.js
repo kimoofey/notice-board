@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import images from '../../ProjectImages/ProjectImages';
 import LoginString from '../Login/LoginStrings';
 import Avatar from '@material-ui/core/Avatar';
+import TextField from '@material-ui/core/TextField/TextField';
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -18,13 +19,14 @@ export default class Profile extends React.Component {
             aboutMe: localStorage.getItem(LoginString.Description),
             photoUrl: localStorage.getItem(LoginString.PhotoURL),
             newPhoto: null,
+            safeCode: '',
+            passCode: '',
         };
         this.newPhotoUrl = '';
-        this.onChangeNickname = this.onChangeNickname.bind(this);
-        this.onChangeAboutMe = this.onChangeAboutMe.bind(this);
         this.onChangeAvatar = this.onChangeAvatar.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
         this.updateUserInfo = this.updateUserInfo.bind(this);
+        this.handlechange = this.handlechange.bind(this);
     }
 
     componentDidMount() {
@@ -36,17 +38,11 @@ export default class Profile extends React.Component {
         }
     }
 
-    onChangeNickname = (event) => {
+    handlechange(event) {
         this.setState({
-            name: event.target.value,
+            [event.target.name]: event.target.value,
         });
-    };
-
-    onChangeAboutMe = (event) => {
-        this.setState({
-            aboutMe: event.target.value,
-        });
-    };
+    }
 
     onChangeAvatar = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -137,6 +133,7 @@ export default class Profile extends React.Component {
                         fontSize: 48,
                         alignSelf: 'center',
                         marginTop: '50px',
+                        marginBottom: '25px',
                     }}>{this.state.name.slice(0, 2)}</Avatar>)
                 }
                 <div className="viewWrapInputFile">
@@ -159,19 +156,72 @@ export default class Profile extends React.Component {
                         id="avatar-upload"
                     />
                 </div>
-                <span className="textLabel">Name</span>
-                <input
-                    className="textInput"
-                    value={this.state.name ? this.state.name : ''}
-                    placeholder="Your nickname..."
-                    onChange={this.onChangeNickname}
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Your nickname"
+                    name="name"
+                    autoComplete="name"
+                    onChange={this.handlechange}
+                    value={this.state.name}
+                    style={{
+                        width: '500px',
+                        color: 'white',
+                    }}
                 />
-                <span className="textLabel">About Me</span>
-                <input
-                    className="textInput"
-                    value={this.state.aboutMe ? this.state.aboutMe : ''}
-                    placeholder="Tell about yourself..."
-                    onChange={this.onChangeAboutMe}
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="aboutMe"
+                    label="Tell about yourself"
+                    helperText="Brief description"
+                    name="aboutMe"
+                    onChange={this.handlechange}
+                    value={this.state.aboutMe}
+                    style={{
+                        width: '500px',
+                        color: 'white',
+                    }}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    label="Password for chat access"
+                    helperText="Have to be four number character"
+                    name="passCode"
+                    type="password"
+                    autoComplete="current-password"
+                    inputProps={{ maxLength: 4 }}
+                    onChange={this.handlechange}
+                    value={this.state.passCode}
+                    style={{
+                        width: '500px',
+                        color: 'white',
+                    }}
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Password for fake chat access"
+                    helperText="Have to be four number character"
+                    name="safeCode"
+                    type="password"
+                    autoComplete="current-password"
+                    inputProps={{ maxLength: 4 }}
+                    onChange={this.handlechange}
+                    value={this.state.safeCode}
+                    style={{
+                        width: '500px',
+                        color: 'white',
+                    }}
                 />
                 <div>
                     <button className="btnUpdate" onClick={this.uploadAvatar}>

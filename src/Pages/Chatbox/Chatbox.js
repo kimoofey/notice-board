@@ -166,9 +166,6 @@ export default class ChatBox extends React.Component {
             this.onSendMessage(this.state.inputValue, 0);
         }
     };
-    openListSticker = () => {
-        this.setState({ isShowSticker: !this.state.isShowSticker });
-    };
 
     onChoosePhoto = event => {
         if (event.target.files && event.target.files[0]) {
@@ -387,135 +384,6 @@ export default class ChatBox extends React.Component {
             );
         }
     };
-    renderStickers = () => {
-        return (
-            <div className="viewStickers">
-                <img
-                    className="imgSticker"
-                    src={images.lego1}
-                    alt="sticker"
-                    onClick={() => {
-                        this.onSendMessage('lego1', 2);
-                    }}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.lego2}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('lego2', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.lego3}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('lego3', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.lego4}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('lego4', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.lego5}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('lego5', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.lego6}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('lego6', 2)}
-                />
-
-                <img
-                    className="imgSticker"
-                    src={images.mimi1}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi1', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi2}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi2', 2)}
-                />
-
-                <img
-                    className="imgSticker"
-                    src={images.mimi4}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi4', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi5}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi5', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi6}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi6', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi7}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi7', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi8}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi8', 2)}
-                />
-                <img
-                    className="imgSticker"
-                    src={images.mimi9}
-                    alt="sticker"
-                    onClick={() => this.onSendMessage('mimi9', 2)}
-                />
-
-            </div>
-        );
-    };
-    getGifImage = value => {
-        switch (value) {
-            case 'lego1':
-                return images.lego1;
-            case 'lego2':
-                return images.lego2;
-            case 'lego3':
-                return images.lego3;
-            case 'lego4':
-                return images.lego4;
-            case 'lego5':
-                return images.lego5;
-            case 'lego6':
-                return images.lego6;
-            case 'mimi1':
-                return images.mimi1;
-            case 'mimi2':
-                return images.mimi2;
-            case 'mimi4':
-                return images.mimi4;
-            case 'mimi5':
-                return images.mimi5;
-            case 'mimi6':
-                return images.mimi6;
-            case 'mimi7':
-                return images.mimi7;
-            case 'mimi8':
-                return images.mimi8;
-            case 'mimi9':
-                return images.mimi9;
-            default:
-                return null;
-        }
-    };
     hashString = str => {
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
@@ -581,8 +449,6 @@ export default class ChatBox extends React.Component {
                         }}
                     />
                 </div>
-
-                {this.state.isShowSticker ? this.renderStickers() : null}
                 <div className="viewBottom">
                     <img
                         className="icOpenGallery"
@@ -598,13 +464,6 @@ export default class ChatBox extends React.Component {
                         className="viewInputGallery"
                         type="file"
                         onChange={this.onChoosePhoto}
-                    />
-
-                    <img
-                        className="icOpenSticker"
-                        src={images.sticker}
-                        alt="icon open sticker"
-                        onClick={this.openListSticker}
                     />
 
                     <input
