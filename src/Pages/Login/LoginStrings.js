@@ -4,6 +4,8 @@ const LoginString = {
     Name: 'nickname',
     Email: 'email',
     Password: 'image/',
+    SafeCode:'image/',
+    PassCode:'image/',
     DOC: 'added',
     Description: 'mydescription',
     FirebaseDocumentId: 'docid',

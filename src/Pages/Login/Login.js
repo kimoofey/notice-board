@@ -39,7 +39,7 @@ export default class Login extends React.Component {
             this.setState({isLoading: false}, () => {
                 this.setState({isLoading: false});
                 this.props.showToast(1, 'Login succes');
-                this.props.history.push('./chat');
+                this.props.history.push('./password');
             });
         } else {
             this.setState({isLoading: false});
@@ -70,7 +70,7 @@ export default class Login extends React.Component {
                     localStorage.setItem(LoginString.Password, data[0].password);
                     localStorage.setItem(LoginString.PhotoURL, data[0].URL);
                     localStorage.setItem(LoginString.Description, data[0].description);
-                    this.props.history.push('/chat');
+                    this.props.history.push('/password');
                 }
             })
             .catch((error) => {
