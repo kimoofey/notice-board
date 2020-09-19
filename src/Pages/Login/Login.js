@@ -36,8 +36,8 @@ export default class Login extends React.Component {
         if (localStorage.getItem(LoginString.ID)) {
             this.setState({ isLoading: false }, () => {
                 this.setState({ isLoading: false });
-                this.props.showToast(1, 'Login succes');
-                this.props.history.push('./password');
+                this.props.showToast(1, 'Login success');
+                this.props.history.push('/password');
             });
         } else {
             this.setState({ isLoading: false });

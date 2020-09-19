@@ -5,6 +5,7 @@ import ReactLoading from 'react-loading';
 import 'react-toastify/dist/ReactToastify.css';
 import images from '../../ProjectImages/ProjectImages';
 import LoginString from '../Login/LoginStrings';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -27,8 +28,11 @@ export default class Profile extends React.Component {
     }
 
     componentDidMount() {
+        if (typeof this.props.location.state === 'undefined') {
+            this.props.history.push('/password');
+        }
         if (!localStorage.getItem(LoginString.ID)) {
-            this.props.history.push('/');
+            this.props.history.push('/login');
         }
     }
 
@@ -124,7 +128,17 @@ export default class Profile extends React.Component {
                 <div className="headerprofile">
                     <span>PROFILE</span>
                 </div>
-                <img className="avatar" alt="" src={this.state.photoUrl}/>
+
+                {this.state.photoUrl
+                    ? (<img className="avatar" alt="" src={this.state.photoUrl}/>)
+                    : (<Avatar className="avatar" style={{
+                        width: '120px',
+                        height: '120px',
+                        fontSize: 48,
+                        alignSelf: 'center',
+                        marginTop: '50px',
+                    }}>{this.state.name.slice(0, 2)}</Avatar>)
+                }
                 <div className="viewWrapInputFile">
                     <img
                         className="imgInputFile"
@@ -164,7 +178,12 @@ export default class Profile extends React.Component {
                         SAVE
                     </button>
                     <button className="btnback" onClick={() => {
-                        this.props.history.push('/chat');
+                        this.props.history.push({
+                            pathname: '/chat',
+                            state: {
+                                checked: true,
+                            },
+                        });
                     }}>
                         BACK
                     </button>

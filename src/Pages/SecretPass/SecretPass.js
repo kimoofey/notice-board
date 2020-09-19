@@ -27,13 +27,22 @@ export default class SecretPass extends React.Component {
         event.preventDefault();
         switch (this.state.password) {
             case this.safeCode:
-                this.props.history.push('/schat');
+                this.props.history.push({
+                    pathname: '/schat',
+                    state: {
+                        checked: true,
+                    },
+                });
                 break;
             case this.passCode:
-                this.props.history.push('/chat');
+                this.props.history.push({
+                    pathname: '/chat',
+                    state: {
+                        checked: true,
+                    },
+                });
                 break;
             default:
-                console.log('none');
                 this.props.showToast(2, 'Incorrect password');
                 break;
         }
@@ -72,9 +81,11 @@ export default class SecretPass extends React.Component {
                             margin="normal"
                             required
                             fullWidth
+                            autoFocus
                             name="password"
                             label="Password"
                             type="password"
+                            inputProps={{ maxLength: 4 }}
                             onChange={this.handleChange}
                             value={this.state.password}
                         />

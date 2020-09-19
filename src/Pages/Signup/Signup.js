@@ -30,14 +30,15 @@ export default class SignUp extends Component {
     }
 
     async handleSubmit(event) {
-
-        const { password, email, name } = this.state;
+        const { password, email, name, safeCode, passCode } = this.state;
         event.preventDefault();
         this.setState({ error: '' });
         await axios.post('https://web-notice-board-server-dev.herokuapp.com/api/user', {
             email: email,
             password: password,
             nickname: name,
+            safeCode: safeCode,
+            passCode: passCode,
         })
             .then((response) => {
                 localStorage.setItem(LoginString.FirebaseDocumentId, response.data.docId);
@@ -52,6 +53,8 @@ export default class SignUp extends Component {
                     name: '',
                     password: '',
                     url: '',
+                    safeCode: '',
+                    passCode: '',
                 });
 
                 this.props.history.push('/chat');
@@ -87,31 +90,25 @@ export default class SignUp extends Component {
                     </div>
                     <div>
                         <Link to="/">
-                            <button class="btn"><i class="fa fa-home"></i> WebChat</button>
+                            <button className="btn"><i className="fa fa-home"/>WebChat</button>
                         </Link>
                     </div>
                 </Card>
                 <Card className="formacontrooutside">
                     <form className="customform" noValidate onSubmit={this.handleSubmit}>
-
                         <TextField
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
                             id="email"
-                            label="Email Address-example:abc@gmail.com"
+                            label="Email Address"
                             name="email"
                             autoComplete="email"
                             autoFocus
                             onChange={this.handlechange}
                             value={this.state.email}
                         />
-                        <div>
-                            <p style={{ color: 'grey', fontSize: '15px', marginLeft: '0' }}>Password :length Greater
-                                than 6 (alphabet,number,special character)</p>
-                        </div>
-
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -119,10 +116,10 @@ export default class SignUp extends Component {
                             fullWidth
                             id="password"
                             label="Password"
+                            helperText="Password should be greater than 6 (alphabet, number, special character)"
                             name="password"
                             type="password"
                             autoComplete="current-password"
-                            autoFocus
                             onChange={this.handlechange}
                             value={this.state.password}
                         />
@@ -131,28 +128,28 @@ export default class SignUp extends Component {
                             margin="normal"
                             required
                             fullWidth
-                            id="password"
-                            label="Password1"
-                            name="password"
+                            label="Password for chat access"
+                            helperText="Have to be four number character"
+                            name="passCode"
                             type="password"
                             autoComplete="current-password"
-                            autoFocus
-                            onChange={this.handlechange}
-                            value={this.state.safeCode}
-                        />
-                         <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="password"
-                            label="Password2"
-                            name="password"
-                            type="password"
-                            autoComplete="current-password"
-                            autoFocus
+                            inputProps={{ maxLength: 4 }}
                             onChange={this.handlechange}
                             value={this.state.passCode}
+                        />
+                         <TextField
+                             variant="outlined"
+                             margin="normal"
+                             required
+                             fullWidth
+                             label="Password for fake chat access"
+                             helperText="Have to be four number character"
+                             name="safeCode"
+                             type="password"
+                             autoComplete="current-password"
+                             inputProps={{ maxLength: 4 }}
+                             onChange={this.handlechange}
+                             value={this.state.safeCode}
                         />
                         <TextField
                             variant="outlined"
@@ -167,12 +164,8 @@ export default class SignUp extends Component {
                             onChange={this.handlechange}
                             value={this.state.name}
                         />
-                        <div>
-                            <p style={{ color: 'grey', fontSize: '15px' }}>Please fill all fields and password should be
-                                greater than 6</p>
-                        </div>
                         <div className="CenterAliningItems">
-                            <button class="button1">
+                            <button className="button1">
                                 <span>Sign Up</span>
                             </button>
                         </div>

@@ -41,22 +41,35 @@ export default class Chat extends React.Component {
     };
 
     onProfileClick = () => {
-        this.props.history.push('/profile');
+        this.props.history.push({
+            pathname: '/profile',
+            state: {
+                checked: true,
+            },
+        });
     };
 
     componentDidMount() {
-        // let notificationMessages = [];
-        axios.get('https://web-notice-board-server-dev.herokuapp.com/api/user/messages', {
-            params: {
-                docId: this.currentUserDocumentId,
-            },
-        })
-            .then((response) => {
-                this.setState({
-                    displayedContactswithNotification: response.data,
+        if (typeof this.props.location.state === 'undefined') {
+            this.props.history.push('/password');
+        }
+        if (!localStorage.getItem(LoginString.ID)) {
+            this.props.showToast(2, 'You need to login to view this page!');
+            this.props.history.push('/login');
+        } else {
+            // let notificationMessages = [];
+            axios.get('https://web-notice-board-server-dev.herokuapp.com/api/user/messages', {
+                params: {
+                    docId: this.currentUserDocumentId,
+                },
+            })
+                .then((response) => {
+                    this.setState({
+                        displayedContactswithNotification: response.data,
+                    });
                 });
-            });
-        this.getListUsers();
+            this.getListUsers();
+        }
     }
 
     getListUsers = async () => {
@@ -175,7 +188,11 @@ export default class Chat extends React.Component {
                                     alt=""
                                     placeholder={images.emptyphoto}
                                 />)
-                                : (<Avatar className="viewAvatarItem">{item.name.slice(0, 2)}</Avatar>)
+                                : (<Avatar className="viewAvatarItem" style={{
+                                    width: '50px',
+                                    height: '50px',
+                                    fontSize: 16,
+                                }}>{item.name.slice(0, 2)}</Avatar>)
                             }
                             <div className="viewWrapContentItem">
                   <span className="textItem">{`Name: ${
@@ -201,12 +218,11 @@ export default class Chat extends React.Component {
     };
 
     searchHandler = (event) => {
-        let searchQuery = event.target.value.toLowerCase(),
-            displayedContacts = this.searchUsers.filter((el) => {
-                let SearchValue = el.name.toLowerCase();
-                return SearchValue.indexOf(searchQuery) !== -1;
-            });
-        this.displayedContacts = displayedContacts;
+        let searchQuery = event.target.value.toLowerCase();
+        this.displayedContacts = this.searchUsers.filter((el) => {
+            let SearchValue = el.name.toLowerCase();
+            return SearchValue.indexOf(searchQuery) !== -1;
+        });
         this.displaySearchedContacts();
     };
 
@@ -270,7 +286,7 @@ export default class Chat extends React.Component {
     };
 
     render() {
-        return (
+        return this.currentUserId ? (
             <div className="root">
                 <div className="body">
                     <div className="viewListUser">
@@ -283,7 +299,12 @@ export default class Chat extends React.Component {
                                     onClick={this.onProfileClick}
                                 />)
                                 : (<Avatar
-                                    style={{ position: 'absolute' }}
+                                    style={{
+                                        position: 'absolute',
+                                        width: '50px',
+                                        height: '50px',
+                                        fontSize: 16,
+                                    }}
                                     className="ProfilePicture"
                                     onClick={this.onProfileClick}>
                                     {this.currentUserName.slice(0, 2)}
@@ -314,6 +335,7 @@ export default class Chat extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+            )
+            : null;
     }
 }

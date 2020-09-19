@@ -82,8 +82,7 @@ export default class ChatBox extends React.Component {
             params: {
                 groupChatId: this.groupChatId,
             },
-        })
-            .then((response) => console.log(response));
+        });
 
         this.removeListener = firebase.firestore()
             .collection('Messages')
@@ -105,7 +104,6 @@ export default class ChatBox extends React.Component {
     };
 
     onSendMessage = (content, type) => {
-        console.log(content);
         let notificationMessages = [];
         if (this.state.isShowStiker && type === 2) {
             this.setState({ isShowStiker: false });
@@ -561,7 +559,11 @@ export default class ChatBox extends React.Component {
                             src={this.currentPeerUser.URL}
                             alt=""
                         />)
-                        : (<Avatar className="viewAvatarItem">{this.currentPeerUser.name.slice(0, 2)}</Avatar>)
+                        : (<Avatar className="viewAvatarItem" style={{
+                            width: '50px',
+                            height: '50px',
+                            fontSize: 16,
+                        }}>{this.currentPeerUser.name.slice(0, 2)}</Avatar>)
                     }
                     <span className="textHeaderChatBoard">
                     <p style={{ fontSize: '20px' }}> {this.currentPeerUser.name}</p>
