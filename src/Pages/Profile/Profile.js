@@ -92,6 +92,8 @@ export default class Profile extends React.Component {
                 url: downloadURL,
                 userId: localStorage.getItem(LoginString.ID),
                 docId: localStorage.getItem(LoginString.FirebaseDocumentId),
+                safeCode: this.state.safeCode,
+                passCode: this.state.passCode,
             };
         } else {
             newInfo = {
@@ -100,6 +102,8 @@ export default class Profile extends React.Component {
                 url: '',
                 userId: localStorage.getItem(LoginString.ID),
                 docId: localStorage.getItem(LoginString.FirebaseDocumentId),
+                safeCode: this.state.safeCode,
+                passCode: this.state.passCode,
             };
         }
         axios.put('https://web-notice-board-server-dev.herokuapp.com/api/user', newInfo)
@@ -108,6 +112,12 @@ export default class Profile extends React.Component {
                 localStorage.setItem(LoginString.Description, this.state.aboutMe);
                 if (isUpdatedPhotoURL) {
                     localStorage.setItem(LoginString.PhotoURL, downloadURL);
+                }
+                if (this.state.safeCode) {
+                    localStorage.setItem(LoginString.safeCode, this.state.safeCode);
+                }
+                if (this.state.passCode) {
+                    localStorage.setItem(LoginString.safeCode, this.state.passCode);
                 }
                 this.setState({ isLoading: false });
                 this.props.showToast(1, 'Update info success');
