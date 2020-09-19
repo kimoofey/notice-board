@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../../Сomponents/Header';
 import Footer from '../../Сomponents/Footer';
 import './Home.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import images from '../../ProjectImages/ProjectImages';
 
 export default class HomePage extends Component {
@@ -85,9 +85,10 @@ export default class HomePage extends Component {
                         </div>
                         <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
 
-                            <h2 class="content-head content-head-ribbon">Institute for Cybersecurity and Information Protection</h2>
+                            <h2 class="content-head content-head-ribbon">Institute for Cybersecurity and Information
+                                Protection</h2>
 
-            
+
                         </div>
                     </div>
 
