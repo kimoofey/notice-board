@@ -6,6 +6,7 @@ import './Chat.css';
 import images from '../../ProjectImages/ProjectImages';
 import ChatBox from '../Chatbox/Chatbox';
 import WelcomeBoard from '../Welcome/Welcome';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class Chat extends React.Component {
     constructor(props) {
@@ -167,13 +168,15 @@ export default class Chat extends React.Component {
                                 }
                             }}
                         >
-                            <img
-                                className="viewAvatarItem"
-                                src={item.URL}
-                                alt=""
-                                placeholder={images.emptyphoto}
-                            />
-
+                            {item.URL
+                                ? (<img
+                                    className="viewAvatarItem"
+                                    src={item.URL}
+                                    alt=""
+                                    placeholder={images.emptyphoto}
+                                />)
+                                : (<Avatar className="viewAvatarItem">{item.name.slice(0, 2)}</Avatar>)
+                            }
                             <div className="viewWrapContentItem">
                   <span className="textItem">{`Name: ${
                       item.name
@@ -233,12 +236,15 @@ export default class Chat extends React.Component {
                                 }
                             }}
                         >
-                            <img
-                                className="viewAvatarItem"
-                                src={item.URL}
-                                alt=""
-                                placeholder={images.emptyphoto}
-                            />
+                            {item.URL
+                                ? (<img
+                                    className="viewAvatarItem"
+                                    src={item.URL}
+                                    alt=""
+                                    placeholder={images.emptyphoto}
+                                />)
+                                : (<Avatar className="viewAvatarItem">{item.name.slice(0, 2)}</Avatar>)
+                            }
 
                             <div className="viewWrapContentItem">
                   <span className="textItem">{`Name: ${
@@ -269,12 +275,20 @@ export default class Chat extends React.Component {
                 <div className="body">
                     <div className="viewListUser">
                         <div className="profileviewleftside">
-                            <img
-                                className="ProfilePicture"
-                                alt=""
-                                src={this.currentUserPhoto}
-                                onClick={this.onProfileClick}
-                            />
+                            {this.currentUserPhoto
+                                ? (<img
+                                    className="ProfilePicture"
+                                    alt=""
+                                    src={this.currentUserPhoto}
+                                    onClick={this.onProfileClick}
+                                />)
+                                : (<Avatar
+                                    style={{ position: 'absolute' }}
+                                    className="ProfilePicture"
+                                    onClick={this.onProfileClick}>
+                                    {this.currentUserName.slice(0, 2)}
+                                </Avatar>)
+                            }
                             <button className="Logout" onClick={this.logout}>Logout</button>
                         </div>
                         <div className="rootsearchbar">

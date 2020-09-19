@@ -43,12 +43,10 @@ export default class SignUp extends Component {
                 localStorage.setItem(LoginString.FirebaseDocumentId, response.data.docId);
                 localStorage.setItem(LoginString.ID, response.data.id);
                 localStorage.setItem(LoginString.Name, response.data.name);
-                localStorage.setItem(LoginString.Email, response.data.email);
-                localStorage.setItem(LoginString.Password, response.data.password);
-                localStorage.setItem(LoginString.SafeCode, response.data.safeCode);
-                localStorage.setItem(LoginString.PassCode, response.data.passCode);
                 localStorage.setItem(LoginString.PhotoURL, response.data.URL);
                 localStorage.setItem(LoginString.Description, response.data.description);
+                localStorage.setItem(LoginString.SafeCode, response.data.safeCode);
+                localStorage.setItem(LoginString.PassCode, response.data.passCode);
 
                 this.setState({
                     name: '',

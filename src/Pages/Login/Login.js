@@ -64,10 +64,10 @@ export default class Login extends React.Component {
                     localStorage.setItem(LoginString.FirebaseDocumentId, data[0].docId);
                     localStorage.setItem(LoginString.ID, data[0].id);
                     localStorage.setItem(LoginString.Name, data[0].name);
-                    localStorage.setItem(LoginString.Email, data[0].email);
-                    localStorage.setItem(LoginString.Password, data[0].password);
                     localStorage.setItem(LoginString.PhotoURL, data[0].URL);
                     localStorage.setItem(LoginString.Description, data[0].description);
+                    localStorage.setItem(LoginString.SafeCode, data[0].safeCode);
+                    localStorage.setItem(LoginString.PassCode, data[0].passCode);
                     this.props.history.push('/password');
                 }
             })

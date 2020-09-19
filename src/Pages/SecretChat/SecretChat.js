@@ -6,8 +6,9 @@ import './SecretChat.css';
 import images from '../../ProjectImages/ProjectImages';
 import ChatBox from '../Chatbox/Chatbox';
 import WelcomeBoard from '../Welcome/Welcome';
+import Avatar from '@material-ui/core/Avatar';
 
-export default class Chat extends React.Component {
+export default class SecretChat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -233,12 +234,15 @@ export default class Chat extends React.Component {
                                 }
                             }}
                         >
-                            <img
-                                className="viewAvatarItem"
-                                src={item.URL}
-                                alt=""
-                                placeholder={images.emptyphoto}
-                            />
+                            {item.URL
+                                ? (<img
+                                    className="viewAvatarItem"
+                                    src={item.URL}
+                                    alt=""
+                                    placeholder={images.emptyphoto}
+                                />)
+                                : (<Avatar className="viewAvatarItem">{item.name.slice(0, 2)}</Avatar>)
+                            }
 
                             <div className="viewWrapContentItem">
                   <span className="textItem">{`Name: ${

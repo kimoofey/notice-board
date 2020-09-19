@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home/Home';
 import Chat from './Pages/Chat/Chat';
@@ -8,7 +8,7 @@ import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import SecretPass from './Pages/SecretPass/SecretPass';
 import SecretChat from './Pages/SecretChat/SecretChat';
-import {toast, ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 class App extends Component {
 
@@ -44,33 +44,40 @@ class App extends Component {
                         render={props => <Home {...props}/>}/>
 
                     <Route
+                        exact
                         path="/login"
                         render={props => <Login showToast={this.showToast}{...props}/>}
                     />
 
                     <Route
+                        exact
                         path="/profile"
                         render={props => <Profile showToast={this.showToast}{...props}/>}
                     />
 
                     <Route
+                        exact
                         path="/signup"
                         render={props => <Signup showToast={this.showToast}{...props}/>}
                     />
 
                     <Route
+                        exact
                         path="/chat"
                         render={props => <Chat showToast={this.showToast}{...props}/>}
                     />
+
                     <Route
+                        exact
                         path="/password"
                         render={props => <SecretPass showToast={this.showToast}{...props}/>}
                     />
+
                     <Route
+                        exact
                         path="/schat"
                         render={props => <SecretChat showToast={this.showToast}{...props}/>}
                     />
-
 
                 </Switch>
             </Router>

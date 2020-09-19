@@ -9,6 +9,7 @@ import moment from 'moment';
 import './Chatbox.css';
 import LoginString from '../Login/LoginStrings';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Avatar from '@material-ui/core/Avatar';
 
 export default class ChatBox extends React.Component {
     constructor(props) {
@@ -554,11 +555,14 @@ export default class ChatBox extends React.Component {
         return (
             <Card className="viewChatBoard">
                 <div className="headerChatBoard">
-                    <img
-                        className="viewAvatarItem"
-                        src={this.currentPeerUser.URL}
-                        alt=""
-                    />
+                    {this.currentPeerUser.URL
+                        ? (<img
+                            className="viewAvatarItem"
+                            src={this.currentPeerUser.URL}
+                            alt=""
+                        />)
+                        : (<Avatar className="viewAvatarItem">{this.currentPeerUser.name.slice(0, 2)}</Avatar>)
+                    }
                     <span className="textHeaderChatBoard">
                     <p style={{ fontSize: '20px' }}> {this.currentPeerUser.name}</p>
                 </span>
