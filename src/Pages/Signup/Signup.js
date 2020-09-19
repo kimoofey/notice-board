@@ -15,6 +15,8 @@ export default class SignUp extends Component {
             email: '',
             password: '',
             name: '',
+            safeCode:'',
+            passCode:'',
             error: null,
         };
         this.handlechange = this.handlechange.bind(this);
@@ -43,6 +45,8 @@ export default class SignUp extends Component {
                 localStorage.setItem(LoginString.Name, response.data.name);
                 localStorage.setItem(LoginString.Email, response.data.email);
                 localStorage.setItem(LoginString.Password, response.data.password);
+                localStorage.setItem(LoginString.SafeCode, response.data.safeCode);
+                localStorage.setItem(LoginString.PassCode, response.data.passCode);
                 localStorage.setItem(LoginString.PhotoURL, response.data.URL);
                 localStorage.setItem(LoginString.Description, response.data.description);
 
@@ -123,6 +127,34 @@ export default class SignUp extends Component {
                             autoFocus
                             onChange={this.handlechange}
                             value={this.state.password}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            label="Password1"
+                            name="password"
+                            type="password"
+                            autoComplete="current-password"
+                            autoFocus
+                            onChange={this.handlechange}
+                            value={this.state.safeCode}
+                        />
+                         <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="password"
+                            label="Password2"
+                            name="password"
+                            type="password"
+                            autoComplete="current-password"
+                            autoFocus
+                            onChange={this.handlechange}
+                            value={this.state.passCode}
                         />
                         <TextField
                             variant="outlined"
