@@ -4,7 +4,7 @@ import LoginString from '../Login/LoginStrings';
 import firebase from '../../Services/firebase';
 import './SecretChat.css';
 import images from '../../ProjectImages/ProjectImages';
-import ChatBox from '../Chatbox/Chatbox';
+import FakeChatBox from './SecretChatbox';
 import WelcomeBoard from '../Welcome/Welcome';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -60,27 +60,40 @@ export default class SecretChat extends React.Component {
     }
 
     getListUsers = async () => {
-        const result = await axios.get('https://web-notice-board-server-dev.herokuapp.com/api/user');
-        if (result.data.length > 0) {
-            let listUsers = [];
-            listUsers = [...result.data];
-            listUsers.forEach((item, index) => {
-                this.searchUsers.push(
-                    {
-                        key: index,
-                        documentkey: item.docId,
-                        id: item.id,
-                        name: item.name,
-                        messages: item.messages,
-                        URL: item.URL,
-                        description: item.description,
-                    },
-                );
-            });
-            this.setState({
-                isLoading: false,
-            });
-        }
+        this.searchUsers = [
+            {
+                URL: 'https://www.redditinc.com/assets/images/site/reddit-logo.png',
+                description: 'Best memes for you',
+                id: '',
+                name: 'Memes',
+                api: 'https://www.reddit.com/r/memes/top/.json?count=10',
+                key: 1,
+            },
+            {
+                URL: 'https://styles.redditmedia.com/t5_2v2cd/styles/communityIcon_p74cmkrdpaq41.jpg',
+                description: 'History memes and jokes go here',
+                id: '',
+                name: 'History memes',
+                api: 'https://www.reddit.com/r/HistoryMemes/top/.json?count=10',
+                key: 2,
+            },
+            {
+                URL: 'https://styles.redditmedia.com/t5_2r1tc/styles/communityIcon_p1gzakhq6y201.png',
+                description: 'A channel about photography techniques and styles',
+                id: '',
+                name: 'I Took a Picture',
+                api: 'https://www.reddit.com/r/itookapicture/top/.json?count=10',
+                key: 3,
+            },
+            {
+                URL: '',
+                description: '',
+                id: '',
+                name: 'Mom',
+                msg: 'https://www.reddit.com/r/teefies/top/.json?count=10',
+                key: 4,
+            },
+        ];
 
         this.renderListUser();
     };
@@ -168,17 +181,17 @@ export default class SecretChat extends React.Component {
                                 }
                             }}
                         >
-                            <img
-                                className="viewAvatarItem"
-                                src={item.URL}
-                                alt=""
-                                placeholder={images.emptyphoto}
-                            />
+                            {item.URL
+                                ? (<img
+                                    className="viewAvatarItem"
+                                    src={item.URL}
+                                    alt=""
+                                />)
+                                : (<Avatar className="viewAvatarItem">{item.name.slice(0, 2)}</Avatar>)
+                            }
 
                             <div className="viewWrapContentItem">
-                  <span className="textItem">{`Name: ${
-                      item.name
-                  }`}</span>
+                                <span className="textItem">{item.name}</span>
                             </div>
                             {classname === 'viewWrapItemNotification' ?
                                 <div className='notificationpragraph'>
@@ -245,9 +258,7 @@ export default class SecretChat extends React.Component {
                             }
 
                             <div className="viewWrapContentItem">
-                  <span className="textItem">{`Name: ${
-                      item.name
-                  }`}</span>
+                                <span className="textItem">{item.name}</span>
                             </div>
                             {classname === 'viewWrapItemNotification' ?
                                 <div className='notificationpragraph'>
@@ -283,8 +294,8 @@ export default class SecretChat extends React.Component {
                         </div>
                         <div className="rootsearchbar">
                             <div className="input-container">
-                                <i class="fa fa-search icon"></i>
-                                <input class="input-field"
+                                <i className="fa fa-search icon"></i>
+                                <input className="input-field"
                                        type="text"
                                        onChange={this.searchHandler}
                                        placeholder="Search"
@@ -295,8 +306,8 @@ export default class SecretChat extends React.Component {
                     </div>
                     <div className="viewBoard">
                         {this.state.currentPeerUser ? (
-                            <ChatBox currentPeerUser={this.state.currentPeerUser}
-                                     showToast={this.props.showToast}
+                            <FakeChatBox currentPeerUser={this.state.currentPeerUser}
+                                         showToast={this.props.showToast}
                             />) : (<WelcomeBoard
                                 currentUserName={this.currentUserName}
                                 currentUserPhoto={this.currentUserPhoto}/>
