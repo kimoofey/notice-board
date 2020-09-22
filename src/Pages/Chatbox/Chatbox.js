@@ -115,18 +115,30 @@ export default class ChatBox extends React.Component {
             .valueOf()
             .toString();
 
-        const itemMessage = {
-            _id: timestamp,
-            text: content.trim(),
-            createdAt: moment().toString(),
-            idFrom: this.currentUserId,
-            idTo: this.currentPeerUser.id,
-            user: {
-                _id: this.currentUserId,
-                avatar: this.currentUserPhoto,
-                name: this.currentUserName,
-            },
-        };
+        const itemMessage = type === 0 ? {
+                _id: timestamp,
+                text: content.trim(),
+                createdAt: moment().toString(),
+                idFrom: this.currentUserId,
+                idTo: this.currentPeerUser.id,
+                user: {
+                    _id: this.currentUserId,
+                    avatar: this.currentUserPhoto,
+                    name: this.currentUserName,
+                },
+            }
+            : {
+                _id: timestamp,
+                URL: content.trim(),
+                createdAt: moment().toString(),
+                idFrom: this.currentUserId,
+                idTo: this.currentPeerUser.id,
+                user: {
+                    _id: this.currentUserId,
+                    avatar: this.currentUserPhoto,
+                    name: this.currentUserName,
+                },
+            };
         firebase.firestore()
             .collection('Messages')
             .doc(this.groupChatId)
@@ -226,26 +238,17 @@ export default class ChatBox extends React.Component {
 
                             </div>,
                         );
-                    } else if (item.type === 1) {
+                    } else if (item.URL) {
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
                                     className="imgItemRight"
-                                    src={item.content}
+                                    src={item.URL}
                                     alt="content message"
                                 />
                             </div>,
                         );
                     } else {
-                        // viewListMessage.push(
-                        //     <div className="viewItemRight3" key={item.timestamp}>
-                        //         <img
-                        //             className="imgItemRight"
-                        //             src={this.getGifImage(item.content)}
-                        //             alt="content message"
-                        //         />
-                        //     </div>,
-                        // );
                         viewListMessage.push(
                             <div className="viewItemRight" key={item.timestamp}>
                                 <span className="textContentItem">{item.text}</span>
@@ -280,7 +283,7 @@ export default class ChatBox extends React.Component {
                                 ) : null}
                             </div>,
                         );
-                    } else if (item.type === 1) {
+                    } else if (item.URL) {
                         viewListMessage.push(
                             <div className="viewWrapItemLeft2" key={item.timestamp}>
                                 <div className="viewWrapItemLeft3">
@@ -296,7 +299,7 @@ export default class ChatBox extends React.Component {
                                     <div className="viewItemLeft2">
                                         <img
                                             className="imgItemLeft"
-                                            src={item.content}
+                                            src={item.URL}
                                             alt="content message"
                                         />
                                     </div>

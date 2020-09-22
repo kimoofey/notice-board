@@ -103,18 +103,32 @@ export default class FakeChatBox extends React.Component {
             .valueOf()
             .toString();
 
-        this.listMessage.push({
-            _id: timestamp,
-            text: content.trim(),
-            createdAt: new Date(),
-            idFrom: this.currentUserId,
-            idTo: 0,
-            user: {
-                _id: 1,
-                name: this.currentUserName,
-                avatar: this.currentUserPhoto,
-            },
-        });
+        const itemMessage = type === 0 ? {
+                _id: timestamp,
+                text: content.trim(),
+                createdAt: moment().toString(),
+                idFrom: this.currentUserId,
+                idTo: this.currentPeerUser.id,
+                user: {
+                    _id: this.currentUserId,
+                    avatar: this.currentUserPhoto,
+                    name: this.currentUserName,
+                },
+            }
+            : {
+                _id: timestamp,
+                URL: content.trim(),
+                createdAt: moment().toString(),
+                idFrom: this.currentUserId,
+                idTo: this.currentPeerUser.id,
+                user: {
+                    _id: this.currentUserId,
+                    avatar: this.currentUserPhoto,
+                    name: this.currentUserName,
+                },
+            };
+
+        this.listMessage.push(itemMessage);
 
         this.setState({ inputValue: '' });
     };
@@ -188,26 +202,17 @@ export default class FakeChatBox extends React.Component {
 
                             </div>,
                         );
-                    } else if (item.type === 1) {
+                    } else if (item.URL) {
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
                                     className="imgItemRight"
-                                    src={item.content}
+                                    src={item.URL}
                                     alt="content message"
                                 />
                             </div>,
                         );
                     } else {
-                        // viewListMessage.push(
-                        //     <div className="viewItemRight3" key={item.timestamp}>
-                        //         <img
-                        //             className="imgItemRight"
-                        //             src={this.getGifImage(item.content)}
-                        //             alt="content message"
-                        //         />
-                        //     </div>,
-                        // );
                         viewListMessage.push(
                             <div className="viewItemRight" key={item.timestamp}>
                                 <span className="textContentItem">{item.text}</span>
