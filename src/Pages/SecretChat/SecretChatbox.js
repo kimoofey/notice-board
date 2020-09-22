@@ -92,7 +92,6 @@ export default class FakeChatBox extends React.Component {
     };
 
     onSendMessage = (content, type) => {
-        let notificationMessages = [];
         if (this.state.isShowStiker && type === 2) {
             this.setState({ isShowStiker: false });
         }

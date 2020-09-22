@@ -7,12 +7,13 @@ import images from '../../ProjectImages/ProjectImages';
 import ChatBox from '../Chatbox/Chatbox';
 import WelcomeBoard from '../Welcome/Welcome';
 import Avatar from '@material-ui/core/Avatar';
+import ReactLoading from 'react-loading';
 
 export default class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
+            isLoading: false,
             isOpenDialogConfirmLogout: false,
             currentPeerUser: null,
             displayedContacts: [],
@@ -57,7 +58,7 @@ export default class Chat extends React.Component {
             this.props.showToast(2, 'You need to login to view this page!');
             this.props.history.push('/login');
         } else {
-            // let notificationMessages = [];
+            this.setState({ isLoading: true });
             axios.get('https://web-notice-board-server-dev.herokuapp.com/api/user/messages', {
                 params: {
                     docId: this.currentUserDocumentId,
@@ -69,6 +70,7 @@ export default class Chat extends React.Component {
                     });
                 });
             this.getListUsers();
+            this.setState({ isLoading: false });
         }
     }
 
@@ -89,9 +91,6 @@ export default class Chat extends React.Component {
                         description: item.description,
                     },
                 );
-            });
-            this.setState({
-                isLoading: false,
             });
         }
 
@@ -322,6 +321,16 @@ export default class Chat extends React.Component {
                                 />
                             </div>
                         </div>
+                        {this.state.isLoading ? (
+                            <div className="viewLoading">
+                                <ReactLoading
+                                    type={'spin'}
+                                    color={'#203152'}
+                                    height={'3%'}
+                                    width={'3%'}
+                                />
+                            </div>
+                        ) : null}
                         {this.state.displayedContacts}
                     </div>
                     <div className="viewBoard">
