@@ -202,12 +202,12 @@ export default class FakeChatBox extends React.Component {
 
                             </div>,
                         );
-                    } else if (item.URL) {
+                    } else if (item.image) {
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
                                     className="imgItemRight"
-                                    src={item.URL}
+                                    src={item.image}
                                     alt="content message"
                                 />
                             </div>,

@@ -129,7 +129,7 @@ export default class ChatBox extends React.Component {
             }
             : {
                 _id: timestamp,
-                URL: content.trim(),
+                image: content.trim(),
                 createdAt: moment().toString(),
                 idFrom: this.currentUserId,
                 idTo: this.currentPeerUser.id,
@@ -238,12 +238,12 @@ export default class ChatBox extends React.Component {
 
                             </div>,
                         );
-                    } else if (item.URL) {
+                    } else if (item.image) {
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
                                     className="imgItemRight"
-                                    src={item.URL}
+                                    src={item.image}
                                     alt="content message"
                                 />
                             </div>,
