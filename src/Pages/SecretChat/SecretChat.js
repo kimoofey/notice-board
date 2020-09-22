@@ -7,6 +7,7 @@ import images from '../../ProjectImages/ProjectImages';
 import FakeChatBox from './SecretChatbox';
 import WelcomeBoard from '../Welcome/Welcome';
 import Avatar from '@material-ui/core/Avatar';
+import { Search } from '@material-ui/icons';
 
 export default class SecretChat extends React.Component {
     constructor(props) {
@@ -280,17 +281,30 @@ export default class SecretChat extends React.Component {
                 <div className="body">
                     <div className="viewListUser">
                         <div className="profileviewleftside">
-                            <img
-                                className="ProfilePicture"
-                                alt=""
-                                src={this.currentUserPhoto}
-                                onClick={this.onProfileClick}
-                            />
+                            {this.currentUserPhoto
+                                ? (<img
+                                    className="ProfilePicture"
+                                    alt=""
+                                    src={this.currentUserPhoto}
+                                    onClick={this.onProfileClick}
+                                />)
+                                : (<Avatar
+                                    style={{
+                                        position: 'absolute',
+                                        width: '50px',
+                                        height: '50px',
+                                        fontSize: 16,
+                                    }}
+                                    className="ProfilePicture"
+                                    onClick={this.onProfileClick}>
+                                    {this.currentUserName.slice(0, 2)}
+                                </Avatar>)
+                            }
                             <button className="Logout" onClick={this.logout}>Logout</button>
                         </div>
                         <div className="rootsearchbar">
                             <div className="input-container">
-                                <i className="fa fa-search icon"></i>
+                                <Search/>
                                 <input className="input-field"
                                        type="text"
                                        onChange={this.searchHandler}

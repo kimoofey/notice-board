@@ -7,6 +7,7 @@ import images from '../../ProjectImages/ProjectImages';
 import ChatBox from '../Chatbox/Chatbox';
 import WelcomeBoard from '../Welcome/Welcome';
 import Avatar from '@material-ui/core/Avatar';
+import { Search } from '@material-ui/icons';
 import ReactLoading from 'react-loading';
 
 export default class Chat extends React.Component {
@@ -194,9 +195,7 @@ export default class Chat extends React.Component {
                                 }}>{item.name.slice(0, 2)}</Avatar>)
                             }
                             <div className="viewWrapContentItem">
-                  <span className="textItem">{`Name: ${
-                      item.name
-                  }`}</span>
+                                <span className="textItem">{item.name}</span>
                             </div>
                             {classname === 'viewWrapItemNotification' ?
                                 <div className='notificationpragraph'>
@@ -234,11 +233,8 @@ export default class Chat extends React.Component {
                     classname = this.getClassnameforUserandNotification(item.id);
                     viewListUser.push(
                         <button
-
                             id={item.key}
-
                             className={classname}
-
                             onClick={() => {
                                 this.notificationErase(item.id);
                                 this.setState({
@@ -262,9 +258,7 @@ export default class Chat extends React.Component {
                             }
 
                             <div className="viewWrapContentItem">
-                  <span className="textItem">{`Name: ${
-                      item.name
-                  }`}</span>
+                                <span className="textItem">{item.name}</span>
                             </div>
                             {classname === 'viewWrapItemNotification' ?
                                 <div className='notificationpragraph'>
@@ -286,64 +280,64 @@ export default class Chat extends React.Component {
 
     render() {
         return this.currentUserId ? (
-            <div className="root">
-                <div className="body">
-                    <div className="viewListUser">
-                        <div className="profileviewleftside">
-                            {this.currentUserPhoto
-                                ? (<img
-                                    className="ProfilePicture"
-                                    alt=""
-                                    src={this.currentUserPhoto}
-                                    onClick={this.onProfileClick}
-                                />)
-                                : (<Avatar
-                                    style={{
-                                        position: 'absolute',
-                                        width: '50px',
-                                        height: '50px',
-                                        fontSize: 16,
-                                    }}
-                                    className="ProfilePicture"
-                                    onClick={this.onProfileClick}>
-                                    {this.currentUserName.slice(0, 2)}
-                                </Avatar>)
-                            }
-                            <button className="Logout" onClick={this.logout}>Logout</button>
-                        </div>
-                        <div className="rootsearchbar">
-                            <div className="input-container">
-                                <i class="fa fa-search icon"></i>
-                                <input class="input-field"
-                                       type="text"
-                                       onChange={this.searchHandler}
-                                       placeholder="Search"
-                                />
+                <div className="root">
+                    <div className="body">
+                        <div className="viewListUser">
+                            <div className="profileviewleftside">
+                                {this.currentUserPhoto
+                                    ? (<img
+                                        className="ProfilePicture"
+                                        alt=""
+                                        src={this.currentUserPhoto}
+                                        onClick={this.onProfileClick}
+                                    />)
+                                    : (<Avatar
+                                        style={{
+                                            position: 'absolute',
+                                            width: '50px',
+                                            height: '50px',
+                                            fontSize: 16,
+                                        }}
+                                        className="ProfilePicture"
+                                        onClick={this.onProfileClick}>
+                                        {this.currentUserName.slice(0, 2)}
+                                    </Avatar>)
+                                }
+                                <button className="Logout" onClick={this.logout}>Logout</button>
                             </div>
-                        </div>
-                        {this.state.isLoading ? (
-                            <div className="viewLoading">
-                                <ReactLoading
-                                    type={'spin'}
-                                    color={'#203152'}
-                                    height={'3%'}
-                                    width={'3%'}
-                                />
+                            <div className="rootsearchbar">
+                                <div className="input-container">
+                                    <Search/>
+                                    <input className="input-field"
+                                           type="text"
+                                           onChange={this.searchHandler}
+                                           placeholder="Search"
+                                    />
+                                </div>
                             </div>
-                        ) : null}
-                        {this.state.displayedContacts}
-                    </div>
-                    <div className="viewBoard">
-                        {this.state.currentPeerUser ? (
-                            <ChatBox currentPeerUser={this.state.currentPeerUser}
-                                     showToast={this.props.showToast}
-                            />) : (<WelcomeBoard
-                                currentUserName={this.currentUserName}
-                                currentUserPhoto={this.currentUserPhoto}/>
-                        )}
+                            {this.state.isLoading ? (
+                                <div className="viewLoading">
+                                    <ReactLoading
+                                        type={'spin'}
+                                        color={'#203152'}
+                                        height={'3%'}
+                                        width={'3%'}
+                                    />
+                                </div>
+                            ) : null}
+                            {this.state.displayedContacts}
+                        </div>
+                        <div className="viewBoard">
+                            {this.state.currentPeerUser ? (
+                                <ChatBox currentPeerUser={this.state.currentPeerUser}
+                                         showToast={this.props.showToast}
+                                />) : (<WelcomeBoard
+                                    currentUserName={this.currentUserName}
+                                    currentUserPhoto={this.currentUserPhoto}/>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
             )
             : null;
     }

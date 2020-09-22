@@ -274,10 +274,9 @@
     display: flex;
     width: 100%;
     margin-bottom: 15px;
-
-}
-
-.icon {
+    flex-direction: row;
+    align-items: center;
+    background: rgb(148, 167, 185);
     padding: 10px;
     background: rgb(148, 167, 185);
     color: white;
