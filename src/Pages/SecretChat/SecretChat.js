@@ -230,11 +230,8 @@ export default class SecretChat extends React.Component {
                     classname = this.getClassnameforUserandNotification(item.id);
                     viewListUser.push(
                         <button
-
                             id={item.key}
-
                             className={classname}
-
                             onClick={() => {
                                 this.notificationErase(item.id);
                                 this.setState({
@@ -267,7 +264,6 @@ export default class SecretChat extends React.Component {
                         </button>,
                     );
                 }
-
             });
             this.setState({
                 displayedContacts: viewListUser,

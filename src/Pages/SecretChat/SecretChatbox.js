@@ -41,6 +41,8 @@ export default class FakeChatBox extends React.Component {
     componentWillReceiveProps(newProps) {
         if (newProps.currentPeerUser) {
             this.currentPeerUser = newProps.currentPeerUser;
+            this.listMessage = [];
+            this.getListHistory();
         }
     }
 
@@ -49,45 +51,30 @@ export default class FakeChatBox extends React.Component {
     }
 
     componentWillUnmount() {
-        if (this.removeListener) {
-            this.removeListener();
-        }
+        this.listMessage = [];
     }
 
     getListHistory = async () => {
         this.setState({ isLoading: true });
         this.listMessage.length = 0;
+        let response = [];
         if (this.props.currentPeerUser.api) {
-            const response = await axios.get(this.props.currentPeerUser.api);
-            const data = await response.data.data.children.map(post => post.data);
-            const posts = await data.filter(item => (!item.is_video && !item.is_gallery)).map((item, index) => ({
-                _id: index,
-                text: item.title,
-                createdAt: new Date(),
-                image: item.url,
-                user: {
-                    _id: 0,
-                    name: item.name,
-                    avatar: item.URL,
-                },
-            }));
-            this.listMessage = posts;
+            response = await axios.get(this.props.currentPeerUser.api);
         } else {
-            const response = await axios.get(this.props.currentPeerUser.msg);
-            const data = await response.data.data.children.map(post => post.data);
-            const posts = await data.filter(item => (!item.is_video && !item.is_gallery)).map((item, index) => ({
-                _id: index,
-                text: item.title,
-                createdAt: new Date(),
-                image: item.url,
-                user: {
-                    _id: 0,
-                    name: item.name,
-                    avatar: item.URL,
-                },
-            }));
-            this.listMessage = posts;
+            response = await axios.get(this.props.currentPeerUser.msg);
         }
+        const data = await response.data.data.children.map(post => post.data);
+        this.listMessage = await data.filter(item => (!item.is_video && !item.is_gallery)).map((item, index) => ({
+            _id: index,
+            text: item.title,
+            createdAt: new Date(),
+            image: item.url,
+            user: {
+                _id: 0,
+                name: item.name,
+                avatar: item.URL,
+            },
+        }));
         this.setState({ isLoading: false });
     };
 
@@ -189,17 +176,14 @@ export default class FakeChatBox extends React.Component {
         }
     };
     renderListMessage = () => {
-
         if (this.listMessage.length > 0) {
             let viewListMessage = [];
             this.listMessage.forEach((item, index) => {
-
                 if (item.idFrom === this.currentUserId) {
                     if (item.type === 0) {
                         viewListMessage.push(
                             <div className="viewItemRight" key={item.timestamp}>
                                 <span className="textContentItem">{item.text}</span>
-
                             </div>,
                         );
                     } else if (item.image) {
@@ -257,10 +241,10 @@ export default class FakeChatBox extends React.Component {
                             <div className="viewWrapItemLeft2" key={item.timestamp}>
                                 <div className="viewWrapItemLeft3">
                                     {this.isLastMessageLeft(index) ? (
-                                        item.URL
+                                        this.props.currentPeerUser.URL
                                             ? (<img
                                                 className="peerAvatarLeft"
-                                                src={item.URL}
+                                                src={this.props.currentPeerUser.URL}
                                                 alt=""
                                             />)
                                             : (<Avatar
@@ -332,14 +316,6 @@ export default class FakeChatBox extends React.Component {
                 </div>
             );
         }
-    };
-    hashString = str => {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            hash += Math.pow(str.charCodeAt(i) * 31, str.length - i);
-            hash = hash & hash; // Convert to 32bit integer
-        }
-        return hash;
     };
 
     isLastMessageLeft(index) {
